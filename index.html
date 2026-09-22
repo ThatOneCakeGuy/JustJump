@@ -146,17 +146,22 @@
   }
 
   /* ---------- controls ---------- */
-  #panel {
+  #controls {
     position: absolute; left: 50%; bottom: 16px; translate: -50% 0; z-index: 20;
-    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
-    justify-content: center; max-width: 92vw;
-    padding: 12px 18px; border-radius: 14px;
+    display: flex; align-items: stretch; gap: 8px; flex-wrap: wrap;
+    justify-content: center; max-width: 94vw;
+  }
+  #panel {
+    order: 2;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    justify-content: center;
+    padding: 8px 12px; border-radius: 12px;
     background: var(--panel); backdrop-filter: blur(6px);
     box-shadow: 0 6px 20px rgba(0,0,0,.18);
   }
   #jump {
-    font: 700 18px/1 inherit; color: #fff; cursor: pointer;
-    padding: 12px 26px; border: 0; border-radius: 10px;
+    font: 700 15px/1 inherit; color: #fff; cursor: pointer;
+    padding: 9px 18px; border: 0; border-radius: 8px;
     background: var(--ketchup);
     box-shadow: 0 3px 0 color-mix(in srgb, var(--ketchup) 65%, black);
     transition: translate .06s, box-shadow .06s;
@@ -165,10 +170,104 @@
     translate: 0 3px; box-shadow: 0 0 0 color-mix(in srgb, var(--ketchup) 65%, black);
   }
   #jump:disabled { opacity: .45; cursor: default; }
-  label { display: flex; align-items: center; gap: 10px; font-size: 14px; user-select: none; }
-  input[type=range] { width: 130px; accent-color: var(--water); }
-  #speedOut { min-width: 1.4em; font-weight: 700; text-align: center; }
-  #panel small { flex-basis: 100%; text-align: center; font-size: 11px; opacity: .6; }
+  label { display: flex; align-items: center; gap: 7px; font-size: 12px; user-select: none; }
+  input[type=range] { width: 90px; accent-color: var(--water); }
+  #speedOut { min-width: 1.2em; font-weight: 700; text-align: center; }
+  #ketchupNote {
+    display: flex; flex-direction: column; line-height: 1.25;
+    font-size: 10px; opacity: .6; white-space: nowrap;
+  }
+
+  /* ---------- auth box + leaderboard button ---------- */
+  .sidebox, #authBox {
+    order: 1;
+    padding: 7px 12px; border-radius: 12px;
+    background: var(--panel); backdrop-filter: blur(6px);
+    box-shadow: 0 6px 20px rgba(0,0,0,.18);
+    display: flex; flex-direction: column; justify-content: center;
+    font-size: 12px;
+  }
+  #leaderboardBtn.sidebox {
+    order: 3; align-items: center; justify-content: center;
+    font: 700 13px/1 inherit; color: var(--man); cursor: pointer; border: 0;
+    padding: 9px 14px;
+  }
+  #authBox form { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  #authBox .authLabel { flex-basis: 100%; font-size: 11px; opacity: .75; margin-bottom: 1px; }
+  #authBox input {
+    font: inherit; padding: 6px 8px;
+    border-radius: 7px; border: 1px solid rgba(0,0,0,.15);
+    background: rgba(255,255,255,.85); color: #111;
+  }
+  #authBox input#authName { width: 92px; }
+  #authBox input#authPin, #authBox input#authPin2 { width: 60px; }
+  #authBox button[type=submit] {
+    font: 700 12px/1 inherit; color: #fff; cursor: pointer;
+    padding: 7px 12px; border: 0; border-radius: 7px;
+    background: var(--ketchup);
+    box-shadow: 0 3px 0 color-mix(in srgb, var(--ketchup) 65%, black);
+    transition: translate .06s, box-shadow .06s;
+  }
+  #authBox button[type=submit]:active {
+    translate: 0 3px; box-shadow: 0 0 0 color-mix(in srgb, var(--ketchup) 65%, black);
+  }
+  #authBox .linklike {
+    background: none; border: 0; padding: 0; font-size: 10px;
+    color: inherit; opacity: .65; cursor: pointer; text-decoration: underline;
+    flex-basis: 100%; text-align: left;
+  }
+  #authBox .authMsg { flex-basis: 100%; font-size: 10px; color: var(--ketchup); }
+  #authBox .authRow {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  }
+  #authBox .authRow .authLabel { flex-basis: auto; margin: 0; }
+  #authBox .authCount { font-size: 11px; opacity: .8; margin-top: 2px; }
+  #authBox #authLogout {
+    flex-shrink: 0; font: 600 11px/1 inherit; cursor: pointer;
+    padding: 5px 9px; border: 0; border-radius: 7px;
+    background: rgba(0,0,0,.08); color: inherit;
+  }
+
+  /* ---------- leaderboard modal ---------- */
+  #lbOverlay {
+    position: fixed; inset: 0; z-index: 40;
+    background: rgba(0,0,0,.45);
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  #lbOverlay[hidden] { display: none; }
+  #lbCard {
+    width: min(360px, 100%); max-height: 80dvh; overflow: auto;
+    background: var(--sky-b); color: var(--man);
+    border-radius: 14px; padding: 18px 20px;
+    box-shadow: 0 12px 40px rgba(0,0,0,.35);
+  }
+  #lbHead { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  #lbHead h2 { margin: 0; font-size: 18px; }
+  #lbClose {
+    background: none; border: 0; font-size: 22px; line-height: 1; cursor: pointer;
+    color: inherit; opacity: .6;
+  }
+  #lbList { list-style: none; margin: 0; padding: 0; }
+  #lbList li {
+    display: flex; align-items: center; gap: 8px;
+    padding: 7px 0; border-bottom: 1px solid rgba(127,127,127,.2);
+    font-size: 14px;
+  }
+  #lbList li.lbLoading { justify-content: center; opacity: .7; }
+  .lbRank { opacity: .5; min-width: 1.8em; }
+  .lbName { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .lbCount { font-weight: 700; }
+
+  @media (max-width: 560px) {
+    #controls { gap: 6px; }
+    .sidebox, #authBox, #panel { padding: 6px 9px; font-size: 11px; }
+    #jump { padding: 7px 14px; font-size: 13px; }
+    label { font-size: 11px; gap: 5px; }
+    input[type=range] { width: 70px; }
+    #authBox input#authName { width: 76px; }
+    #authBox input#authPin, #authBox input#authPin2 { width: 52px; }
+  }
 </style>
 </head>
 <body>
@@ -193,13 +292,29 @@
   <div id="water"></div>
   <div id="rock"></div>
 
-  <div id="panel">
-    <button id="jump">JUMP</button>
-    <label>Fall speed
-      <input id="speed" type="range" min="1" max="10" step="1" value="5">
-      <span id="speedOut">5</span>
-    </label>
-    <small>that's ketchup. he's fine.</small>
+  <div id="controls">
+    <div id="authBox"></div>
+
+    <div id="panel">
+      <button id="jump">JUMP</button>
+      <label>Fall speed
+        <input id="speed" type="range" min="1" max="10" step="1" value="5">
+        <span id="speedOut">5</span>
+      </label>
+      <div id="ketchupNote"><span>That's Ketchup.</span><span>He's Fine...</span></div>
+    </div>
+
+    <button id="leaderboardBtn" class="sidebox" type="button">🏆 Leaderboard</button>
+  </div>
+
+  <div id="lbOverlay" hidden>
+    <div id="lbCard" role="dialog" aria-modal="true" aria-labelledby="lbTitle">
+      <div id="lbHead">
+        <h2 id="lbTitle">Leaderboard</h2>
+        <button id="lbClose" type="button" aria-label="Close">&times;</button>
+      </div>
+      <ol id="lbList"></ol>
+    </div>
   </div>
 </div>
 
@@ -312,6 +427,7 @@
         if (y >= landY) {
           y = landY; rot = 0; sx = 2.0; sy = 0.18;
           ketchup();
+          window.jjCountJump && window.jjCountJump();
           next('splat');
         }
         break;
@@ -350,6 +466,171 @@
   // ---- controls --------------------------------------------------------
   btn.addEventListener('click', () => { if (phase === 'idle') armed = true; });
   speed.addEventListener('input', () => { speedOut.textContent = speed.value; });
+})();
+</script>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const box = $('authBox');
+  const lbBtn = $('leaderboardBtn'), lbOverlay = $('lbOverlay'),
+        lbList = $('lbList'), lbClose = $('lbClose');
+
+  let session = { loggedIn: false, username: '', jumpCount: 0 };
+  let pendingName = '';
+
+  async function api(path, body) {
+    const res = await fetch(path, {
+      method: body ? 'POST' : 'GET',
+      headers: body ? { 'Content-Type': 'application/json' } : undefined,
+      body: body ? JSON.stringify(body) : undefined,
+    });
+    let data = {};
+    try { data = await res.json(); } catch (e) {}
+    return { ok: res.ok, data };
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, (c) => (
+      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+    ));
+  }
+
+  function showMsg(text) {
+    const el = $('authMsg');
+    if (el) { el.textContent = text; el.hidden = false; }
+  }
+
+  function renderLoggedOut() {
+    box.innerHTML = `
+      <form id="authForm" autocomplete="off">
+        <div class="authLabel">Play as</div>
+        <input id="authName" type="text" placeholder="your name" maxlength="20" required>
+        <button type="submit">Go</button>
+        <div id="authMsg" class="authMsg" hidden></div>
+      </form>`;
+    $('authForm').addEventListener('submit', onNameSubmit);
+  }
+
+  function renderPin(kind) {
+    const title = kind === 'login'
+      ? `Hi ${escapeHtml(pendingName)}, enter your PIN`
+      : `New name! Set a 4-8 digit PIN`;
+    box.innerHTML = `
+      <form id="pinForm" autocomplete="off">
+        <div class="authLabel">${title}</div>
+        <input id="authPin" type="password" inputmode="numeric" pattern="[0-9]*"
+               placeholder="PIN" maxlength="8" required>
+        ${kind === 'register'
+          ? '<input id="authPin2" type="password" inputmode="numeric" pattern="[0-9]*" placeholder="confirm PIN" maxlength="8" required>'
+          : ''}
+        <button type="submit">${kind === 'login' ? 'Log in' : 'Create'}</button>
+        <button type="button" id="authBack" class="linklike">use a different name</button>
+        <div id="authMsg" class="authMsg" hidden></div>
+      </form>`;
+    $('pinForm').addEventListener('submit', (e) => onPinSubmit(e, kind));
+    $('authBack').addEventListener('click', () => { pendingName = ''; renderLoggedOut(); });
+    $('authPin').focus();
+  }
+
+  function renderLoggedIn() {
+    box.innerHTML = `
+      <div class="authRow">
+        <div class="authLabel">Playing as <b id="authWho"></b></div>
+        <button type="button" id="authLogout">Log out</button>
+      </div>
+      <div class="authCount"><span id="authJumps"></span> jumps</div>`;
+    $('authWho').textContent = session.username;
+    $('authJumps').textContent = session.jumpCount;
+    $('authLogout').addEventListener('click', doLogout);
+  }
+
+  async function onNameSubmit(e) {
+    e.preventDefault();
+    const name = $('authName').value.trim();
+    if (!/^[A-Za-z0-9_-]{2,20}$/.test(name)) {
+      showMsg('2-20 characters: letters, numbers, _ or -');
+      return;
+    }
+    pendingName = name;
+    const { ok, data } = await api('/api/check-user.php', { username: name });
+    if (!ok) { showMsg(data.error || 'Something went wrong.'); return; }
+    renderPin(data.exists ? 'login' : 'register');
+  }
+
+  async function onPinSubmit(e, kind) {
+    e.preventDefault();
+    const pin = $('authPin').value;
+    if (!/^[0-9]{4,8}$/.test(pin)) { showMsg('PIN must be 4-8 digits.'); return; }
+    if (kind === 'register' && pin !== $('authPin2').value) {
+      showMsg('PINs do not match.');
+      return;
+    }
+    const url = kind === 'login' ? '/api/login.php' : '/api/register.php';
+    const { ok, data } = await api(url, { username: pendingName, pin });
+    if (!ok) { showMsg(data.error || 'Something went wrong.'); return; }
+    session = { loggedIn: true, username: data.username, jumpCount: data.jumpCount };
+    renderLoggedIn();
+  }
+
+  async function doLogout() {
+    await api('/api/logout.php', {});
+    session = { loggedIn: false, username: '', jumpCount: 0 };
+    renderLoggedOut();
+  }
+
+  async function init() {
+    const { ok, data } = await api('/api/me.php');
+    if (ok && data.loggedIn) {
+      session = { loggedIn: true, username: data.username, jumpCount: data.jumpCount };
+      renderLoggedIn();
+    } else {
+      renderLoggedOut();
+    }
+  }
+  init();
+
+  // Called from the game loop exactly when the ketchup splat animation
+  // fires (landing) — never on the button click, so spamming JUMP while
+  // disabled can't inflate the count.
+  window.jjCountJump = async function () {
+    if (!session.loggedIn) return;
+    const { ok, data } = await api('/api/jump.php', {});
+    if (ok) {
+      session.jumpCount = data.jumpCount;
+      const el = $('authJumps');
+      if (el) el.textContent = session.jumpCount;
+    }
+  };
+
+  // ---- leaderboard -------------------------------------------------------
+  async function openLeaderboard() {
+    lbOverlay.hidden = false;
+    lbList.innerHTML = '<li class="lbLoading">Loading…</li>';
+    const { ok, data } = await api('/api/leaderboard.php');
+    if (!ok || !data.leaders || !data.leaders.length) {
+      lbList.innerHTML = '<li class="lbLoading">No jumps yet. Be the first!</li>';
+      return;
+    }
+    lbList.innerHTML = '';
+    data.leaders.forEach((row, i) => {
+      const li = document.createElement('li');
+      const rank = document.createElement('span');
+      rank.className = 'lbRank'; rank.textContent = (i + 1) + '.';
+      const name = document.createElement('span');
+      name.className = 'lbName'; name.textContent = row.username;
+      const count = document.createElement('span');
+      count.className = 'lbCount'; count.textContent = row.jumpCount;
+      li.append(rank, name, count);
+      lbList.appendChild(li);
+    });
+  }
+  function closeLeaderboard() { lbOverlay.hidden = true; }
+
+  lbBtn.addEventListener('click', openLeaderboard);
+  lbClose.addEventListener('click', closeLeaderboard);
+  lbOverlay.addEventListener('click', (e) => { if (e.target === lbOverlay) closeLeaderboard(); });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lbOverlay.hidden) closeLeaderboard(); });
 })();
 </script>
 </body>
