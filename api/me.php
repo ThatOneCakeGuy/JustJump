@@ -7,7 +7,8 @@ if (empty($_SESSION['uid'])) {
     json_out(['loggedIn' => false]);
 }
 
-$stmt = db()->prepare('SELECT username, jump_count FROM users WHERE id = ?');
+$pdo = db();
+$stmt = $pdo->prepare('SELECT username, jump_count FROM users WHERE id = ?');
 $stmt->execute([$_SESSION['uid']]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -17,4 +18,9 @@ if (!$user) {
     json_out(['loggedIn' => false]);
 }
 
-json_out(['loggedIn' => true, 'username' => $user['username'], 'jumpCount' => (int) $user['jump_count']]);
+json_out([
+    'loggedIn' => true,
+    'username' => $user['username'],
+    'jumpCount' => (int) $user['jump_count'],
+    'upgrades' => owned_upgrades($pdo, (int) $_SESSION['uid']),
+]);

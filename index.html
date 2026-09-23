@@ -17,6 +17,12 @@
     --rock: #7c848a;
     --ketchup: #c8102e;
     --panel: rgba(255,255,255,.72);
+    /* Ladder's foot sits at 86dvh (= 100dvh minus #water's 14% height, i.e.
+       right where the water starts) regardless of --ladder-h, so changing
+       the ladder's height alone can never leave it floating above the
+       ground again — #rig's top is computed from this, not a fixed number. */
+    --ladder-h: 37dvh;
+    --ladder-ground: 86dvh;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -42,7 +48,89 @@
     font: 16px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     color: var(--man);
   }
-  #stage { position: relative; width: 100%; height: 100dvh; overflow: hidden; }
+  #app { display: flex; width: 100%; height: 100dvh; }
+  #stage { position: relative; flex: 1 1 auto; min-width: 0; height: 100%; overflow: hidden; }
+
+  /* ---------- sidebar ---------- */
+  #sidebar {
+    flex: 0 0 520px; width: 520px; height: 100%; box-sizing: border-box;
+    display: flex; flex-direction: column; gap: 10px;
+    padding: 14px 12px; overflow: hidden;
+    background: var(--sky-b);
+    border-left: 1px solid rgba(127,127,127,.25);
+  }
+  .sidepanel {
+    background: var(--panel); backdrop-filter: blur(6px);
+    border-radius: 14px; padding: 12px 14px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.18);
+    display: flex; flex-direction: column; min-height: 0;
+  }
+  .sidepanel h3 {
+    margin: 0 0 8px; font-size: 12px; letter-spacing: .05em;
+    text-transform: uppercase; opacity: .7;
+  }
+  #lbBox { flex: 0 0 auto; }
+  #lbBoxList { list-style: none; margin: 0; padding: 0; font-size: 12px; }
+  #lbBoxList li { display: flex; align-items: center; gap: 6px; padding: 3px 0; }
+  #lbBoxList .lbRank { opacity: .5; min-width: 1.4em; }
+  #lbBoxList .lbName { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #lbBoxList .lbCount { font-weight: 700; }
+  #lbBoxYou {
+    margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(127,127,127,.25);
+    font-size: 12px; display: flex; justify-content: space-between; font-weight: 700;
+  }
+  #chatBox { flex: 1 1 auto; min-height: 0; }
+  #chatLog {
+    flex: 1 1 auto; min-height: 0; overflow-y: auto;
+    font-size: 12px; display: flex; flex-direction: column; gap: 4px; padding-right: 2px;
+  }
+  .chatMsg { line-height: 1.3; word-break: break-word; }
+  .chatMsg .chatWho { font-weight: 700; }
+  .chatMsg.system { opacity: .8; font-style: italic; color: var(--ketchup); }
+  .chatMsg.cheat { font-weight: 800; text-transform: uppercase; color: var(--ketchup); }
+  .chatMsg.bot .chatWho { color: var(--water); }
+  .chatMsg.bot { font-style: italic; }
+  .chatMsg.update {
+    font-weight: 700; color: #2ecc40;
+    border-left: 2px solid #2ecc40; padding-left: 6px;
+  }
+  #chatForm { display: flex; gap: 6px; margin-top: 8px; }
+  #chatInput {
+    flex: 1; min-width: 0; font: inherit; font-size: 12px; padding: 6px 8px;
+    border-radius: 7px; border: 1px solid rgba(0,0,0,.15);
+    background: rgba(255,255,255,.85); color: #111;
+  }
+  #chatInput:disabled { opacity: .6; }
+  #chatForm button {
+    font: 700 12px/1 inherit; color: #fff; cursor: pointer;
+    padding: 7px 12px; border: 0; border-radius: 7px; background: var(--water);
+  }
+  #unlocksBox { flex: 0 0 auto; }
+  #unlocksList {
+    list-style: none; margin: 0; padding: 0;
+    font-size: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px;
+  }
+  #unlocksList li { display: flex; align-items: center; gap: 6px; min-width: 0; }
+  #unlocksList .upInfo {
+    display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; cursor: pointer;
+    border-radius: 6px;
+  }
+  #unlocksList .upInfo:hover, #unlocksList .upInfo:focus-visible {
+    background: rgba(0,0,0,.06); outline: none;
+  }
+  #unlocksList .upIcon { font-size: 16px; width: 18px; text-align: center; flex-shrink: 0; }
+  #unlocksList .upName { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #unlocksList button.upToggle {
+    font: 700 10px/1 inherit; cursor: pointer; border: 0; border-radius: 6px;
+    padding: 5px 8px; flex-shrink: 0;
+  }
+  #unlocksList button.upToggle.locked { background: rgba(0,0,0,.12); color: inherit; opacity: .55; cursor: default; }
+  #unlocksList button.upToggle.enabled { background: var(--ketchup); color: #fff; }
+  #unlocksList button.upToggle.disabled { background: rgba(0,0,0,.12); color: inherit; }
+
+  @media (max-width: 1150px) {
+    #sidebar { display: none; }
+  }
 
   /* ---------- title ---------- */
   h1 {
@@ -53,8 +141,11 @@
   h1 span { color: var(--water); }
 
   /* ---------- water ---------- */
+  /* Fixed (not absolute) so it spans the full viewport width — behind the
+     stage's own bounds and the sidebar — rather than just the stage's box,
+     which is narrower than the screen now that the sidebar shares it. */
   #water {
-    position: absolute; inset: auto 0 0 0; height: 14%;
+    position: fixed; inset: auto 0 0 0; height: 14%;
     background: linear-gradient(var(--water), var(--water-deep));
   }
   #water::before {
@@ -81,8 +172,8 @@
   }
 
   /* ---------- ladder + board ---------- */
-  #rig { position: absolute; top: 12%; left: 8%; }
-  .ladder { position: absolute; top: 0; left: 0; width: 56px; height: 74dvh; }
+  #rig { position: absolute; top: calc(var(--ladder-ground) - var(--ladder-h)); left: 8%; }
+  .ladder { position: absolute; top: 0; left: 0; width: 56px; height: var(--ladder-h); }
   .rail {
     position: absolute; top: 0; width: 9px; height: 100%; border-radius: 2px;
     background: linear-gradient(90deg,
@@ -160,37 +251,52 @@
     box-shadow: 0 6px 20px rgba(0,0,0,.18);
   }
   #jump {
+    position: relative; overflow: hidden;
+    width: 135px;
     font: 700 15px/1 inherit; color: #fff; cursor: pointer;
     padding: 9px 18px; border: 0; border-radius: 8px;
-    background: var(--ketchup);
+    background: color-mix(in srgb, var(--ketchup) 40%, black);
     box-shadow: 0 3px 0 color-mix(in srgb, var(--ketchup) 65%, black);
     transition: translate .06s, box-shadow .06s;
+    user-select: none; touch-action: none;
   }
   #jump:active:not(:disabled) {
     translate: 0 3px; box-shadow: 0 0 0 color-mix(in srgb, var(--ketchup) 65%, black);
   }
   #jump:disabled { opacity: .45; cursor: default; }
-  label { display: flex; align-items: center; gap: 7px; font-size: 12px; user-select: none; }
+  #jumpFill {
+    position: absolute; inset: 0 auto 0 0; width: 0%;
+    background: var(--ketchup); z-index: 1;
+  }
+  #jumpZones { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+  #jumpZones .yellow, #jumpZones .green { position: absolute; top: 0; bottom: 0; opacity: .6; }
+  #jumpZones .yellow { left: 85%; width: 10%; background: #ffd400; }
+  #jumpZones .green  { left: 95%; width: 5%; background: #2ecc40; }
+  #jumpLabel { position: relative; z-index: 3; display: block; }
+  #speedGroup { display: flex; flex-direction: column; gap: 5px; }
+  #speedGroup label {
+    display: grid; grid-template-columns: 62px auto auto;
+    align-items: center; gap: 7px; font-size: 12px; user-select: none;
+  }
+  #speedGroup label .lbl { text-align: left; }
+  #speedGroup label.locked { opacity: .4; }
+  #speedGroup label.locked input[type=range] { cursor: not-allowed; }
   input[type=range] { width: 90px; accent-color: var(--water); }
+  input[type=range]:disabled { cursor: not-allowed; }
   #speedOut { min-width: 1.2em; font-weight: 700; text-align: center; }
   #ketchupNote {
     display: flex; flex-direction: column; line-height: 1.25;
     font-size: 10px; opacity: .6; white-space: nowrap;
   }
 
-  /* ---------- auth box + leaderboard button ---------- */
-  .sidebox, #authBox {
+  /* ---------- auth box ---------- */
+  #authBox {
     order: 1;
     padding: 7px 12px; border-radius: 12px;
     background: var(--panel); backdrop-filter: blur(6px);
     box-shadow: 0 6px 20px rgba(0,0,0,.18);
     display: flex; flex-direction: column; justify-content: center;
     font-size: 12px;
-  }
-  #leaderboardBtn.sidebox {
-    order: 3; align-items: center; justify-content: center;
-    font: 700 13px/1 inherit; color: var(--man); cursor: pointer; border: 0;
-    padding: 9px 14px;
   }
   #authBox form { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
   #authBox .authLabel { flex-basis: 100%; font-size: 11px; opacity: .75; margin-bottom: 1px; }
@@ -228,42 +334,74 @@
     background: rgba(0,0,0,.08); color: inherit;
   }
 
-  /* ---------- leaderboard modal ---------- */
-  #lbOverlay {
-    position: fixed; inset: 0; z-index: 40;
-    background: rgba(0,0,0,.45);
+  /* ---------- upgrade unlock popup ---------- */
+  #upgradeOverlay {
+    position: fixed; inset: 0; z-index: 50;
+    background: rgba(0,0,0,.6);
     display: flex; align-items: center; justify-content: center;
     padding: 20px;
   }
-  #lbOverlay[hidden] { display: none; }
-  #lbCard {
-    width: min(360px, 100%); max-height: 80dvh; overflow: auto;
+  #upgradeOverlay[hidden] { display: none; }
+  #upgradeCard {
+    width: min(300px, 100%);
     background: var(--sky-b); color: var(--man);
-    border-radius: 14px; padding: 18px 20px;
-    box-shadow: 0 12px 40px rgba(0,0,0,.35);
+    border-radius: 18px; padding: 26px 24px 22px;
+    box-shadow: 0 18px 60px rgba(0,0,0,.45);
+    text-align: center;
+    animation: upgradePop .35s cubic-bezier(.2,1.4,.4,1);
   }
-  #lbHead { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-  #lbHead h2 { margin: 0; font-size: 18px; }
-  #lbClose {
-    background: none; border: 0; font-size: 22px; line-height: 1; cursor: pointer;
-    color: inherit; opacity: .6;
+  @keyframes upgradePop {
+    from { transform: scale(.7); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
   }
-  #lbList { list-style: none; margin: 0; padding: 0; }
-  #lbList li {
-    display: flex; align-items: center; gap: 8px;
-    padding: 7px 0; border-bottom: 1px solid rgba(127,127,127,.2);
-    font-size: 14px;
+  #upgradeSub {
+    font: 700 11px/1 inherit; letter-spacing: .12em; opacity: .55; margin-bottom: 14px;
   }
-  #lbList li.lbLoading { justify-content: center; opacity: .7; }
-  .lbRank { opacity: .5; min-width: 1.8em; }
-  .lbName { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .lbCount { font-weight: 700; }
+  #upgradeIcon { font-size: 60px; line-height: 1; margin-bottom: 10px; }
+  #upgradeName { margin-bottom: 20px; word-break: break-word; }
+  #upgradeAck {
+    font: 700 15px/1 inherit; color: #fff; cursor: pointer;
+    padding: 11px 22px; border: 0; border-radius: 10px;
+    background: var(--ketchup);
+    box-shadow: 0 3px 0 color-mix(in srgb, var(--ketchup) 65%, black);
+    transition: translate .06s, box-shadow .06s;
+  }
+  #upgradeAck:active {
+    translate: 0 3px; box-shadow: 0 0 0 color-mix(in srgb, var(--ketchup) 65%, black);
+  }
+
+  /* ---------- upgrade info popup ---------- */
+  #infoOverlay {
+    position: fixed; inset: 0; z-index: 50;
+    background: rgba(0,0,0,.55);
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  #infoOverlay[hidden] { display: none; }
+  #infoCard {
+    position: relative;
+    width: min(320px, 100%);
+    background: var(--sky-b); color: var(--man);
+    border-radius: 18px; padding: 26px 22px 22px;
+    box-shadow: 0 18px 60px rgba(0,0,0,.45);
+    text-align: center;
+    animation: upgradePop .25s cubic-bezier(.2,1.4,.4,1);
+  }
+  #infoClose {
+    position: absolute; top: 10px; right: 12px;
+    background: none; border: 0; font-size: 20px; line-height: 1; cursor: pointer;
+    color: inherit; opacity: .55;
+  }
+  #infoIcon { font-size: 52px; line-height: 1; margin-bottom: 8px; }
+  #infoName { font: 800 19px/1.2 inherit; margin-bottom: 12px; word-break: break-word; }
+  #infoDesc { font-size: 13px; line-height: 1.5; margin-bottom: 12px; }
+  #infoUnlock { font-size: 12px; line-height: 1.5; opacity: .7; }
 
   @media (max-width: 560px) {
     #controls { gap: 6px; }
-    .sidebox, #authBox, #panel { padding: 6px 9px; font-size: 11px; }
-    #jump { padding: 7px 14px; font-size: 13px; }
-    label { font-size: 11px; gap: 5px; }
+    #authBox, #panel { padding: 6px 9px; font-size: 11px; }
+    #jump { padding: 7px 14px; font-size: 13px; width: 110px; }
+    #speedGroup label { font-size: 11px; gap: 5px; grid-template-columns: 54px auto auto; }
     input[type=range] { width: 70px; }
     #authBox input#authName { width: 76px; }
     #authBox input#authPin, #authBox input#authPin2 { width: 52px; }
@@ -271,6 +409,8 @@
 </style>
 </head>
 <body>
+<div id="app">
+<div id="water"></div>
 <div id="stage">
   <h1>justjump<span>.lol</span></h1>
 
@@ -289,33 +429,72 @@
     </div>
   </div>
 
-  <div id="water"></div>
   <div id="rock"></div>
 
   <div id="controls">
     <div id="authBox"></div>
 
     <div id="panel">
-      <button id="jump">JUMP</button>
-      <label>Fall speed
-        <input id="speed" type="range" min="1" max="10" step="1" value="5">
-        <span id="speedOut">5</span>
-      </label>
-      <div id="ketchupNote"><span>That's Ketchup.</span><span>He's Fine...</span></div>
-    </div>
-
-    <button id="leaderboardBtn" class="sidebox" type="button">🏆 Leaderboard</button>
-  </div>
-
-  <div id="lbOverlay" hidden>
-    <div id="lbCard" role="dialog" aria-modal="true" aria-labelledby="lbTitle">
-      <div id="lbHead">
-        <h2 id="lbTitle">Leaderboard</h2>
-        <button id="lbClose" type="button" aria-label="Close">&times;</button>
+      <button id="jump" type="button">
+        <span id="jumpFill"></span>
+        <span id="jumpZones"><span class="yellow"></span><span class="green"></span></span>
+        <span id="jumpLabel">JUMP</span>
+      </button>
+      <div id="speedGroup">
+        <label id="speedLabel"><span class="lbl">Fall Speed</span>
+          <input id="speed" type="range" min="1" max="10" step="1" value="5" disabled>
+          <span id="speedOut">5</span>
+        </label>
+        <label id="splatterLabel"><span class="lbl">Splat Size</span>
+          <input id="splatter" type="range" min="1" max="10" step="1" value="5" disabled>
+          <span id="splatterOut">5</span>
+        </label>
       </div>
-      <ol id="lbList"></ol>
+      <div id="ketchupNote"><span id="noteLine1">That's Ketchup.</span><span id="noteLine2">He's Fine...</span></div>
     </div>
   </div>
+
+  <div id="upgradeOverlay" hidden>
+    <div id="upgradeCard" role="dialog" aria-modal="true" aria-labelledby="upgradeName">
+      <div id="upgradeSub">UPGRADE UNLOCKED</div>
+      <div id="upgradeIcon"></div>
+      <div id="upgradeName"></div>
+      <button id="upgradeAck" type="button">Fuck Yeah!</button>
+    </div>
+  </div>
+
+  <div id="infoOverlay" hidden>
+    <div id="infoCard" role="dialog" aria-modal="true" aria-labelledby="infoName">
+      <button id="infoClose" type="button" aria-label="Close">&times;</button>
+      <div id="infoIcon"></div>
+      <div id="infoName"></div>
+      <div id="infoDesc"></div>
+      <div id="infoUnlock"></div>
+    </div>
+  </div>
+</div>
+
+<aside id="sidebar">
+  <div class="sidepanel" id="lbBox">
+    <h3>Leaderboard</h3>
+    <ol id="lbBoxList"></ol>
+    <div id="lbBoxYou" hidden></div>
+  </div>
+
+  <div class="sidepanel" id="chatBox">
+    <h3>Chat</h3>
+    <div id="chatLog"></div>
+    <form id="chatForm" autocomplete="off">
+      <input id="chatInput" type="text" maxlength="200" placeholder="log in to chat" disabled>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <div class="sidepanel" id="unlocksBox">
+    <h3>Unlocks</h3>
+    <ul id="unlocksList"></ul>
+  </div>
+</aside>
 </div>
 
 <script>
@@ -324,16 +503,57 @@
   const stage = $('stage'), diver = $('diver'), squash = $('squash');
   const board = $('board'), rock = $('rock'), tip = $('tip');
   const btn = $('jump'), speed = $('speed'), speedOut = $('speedOut');
+  const jumpFill = $('jumpFill'), jumpLabel = $('jumpLabel');
 
   const rand = (a, b) => a + Math.random() * (b - a);
   const clamp01 = (v) => v < 0 ? 0 : v > 1 ? 1 : v;
 
   // Slider 1-10 -> fall physics. Read once, at the moment JUMP is pressed.
   const gravityFor = (s) => 300 + (s - 1) * 340;   // 300 .. 3360 px/s²
-  const leapFor    = (s) => -(190 + s * 25);       // -215 .. -440 px/s
+
+  // The rock's clip-path top silhouette (see #rock's clip-path polygon),
+  // as [xFraction, yFraction] pairs in rock-local 0..1 space, left to right.
+  // Used both to size the "landable" zone and to interpolate the actual
+  // surface height at wherever within it the diver lands — not just a
+  // single flat constant — so a hit visually sits ON the rock's drawn shape.
+  const ROCK_TOP = [
+    [0.00, 1.00], [0.04, 0.55], [0.14, 0.34], [0.30, 0.14],
+    [0.55, 0.14], [0.72, 0.32], [0.88, 0.60], [1.00, 1.00],
+  ];
+  // Landable = the rock's substantial body, between the two points where the
+  // silhouette rises out of the thin near-water corners (0-4%, 88-100%) —
+  // excludes those slivers, which aren't a real landing surface, but is
+  // wider than just the flat 30-55% peak so a well-timed yellow/green-zone
+  // release can still land a hit rather than always overshooting it.
+  const ROCK_HIT_MIN = 0.14, ROCK_HIT_MAX = 0.72;
+
+  function rockTopFrac(fx) {                        // interpolate ROCK_TOP at fx in [0,1]
+    fx = fx < 0 ? 0 : fx > 1 ? 1 : fx;
+    for (let i = 1; i < ROCK_TOP.length; i++) {
+      const [x0, y0] = ROCK_TOP[i - 1], [x1, y1] = ROCK_TOP[i];
+      if (fx <= x1) return y0 + (y1 - y0) * (fx - x0) / (x1 - x0);
+    }
+    return 1;
+  }
+
+  // Apex height (above the launch point) is this fraction of the actual
+  // horizontal distance travelled this jump, so the arc looks like a proper
+  // "up, then out" basketball shot at every power level — a short hop gets a
+  // proportionally short arc, a max-power jump a tall one — instead of the
+  // old fixed-per-slider launch speed, which read as increasingly flat the
+  // further driftSpan*powerMul sent him.
+  const ARC_RATIO = 0.55;
 
   // ---- layout ----------------------------------------------------------
-  let startX = 0, startY = 0, landY = 0, driftSpan = 0;
+  let startX = 0, startY = 0, driftSpan = 0;
+  let rockLeft = 0, rockWidth = 0, rockH = 0, rockTop = 0, waterLandY = 0;
+  // Set per-jump by launch(): which surface this particular jump is headed
+  // for (the rock if the drift lands inside its landable zone, otherwise the
+  // water) and that surface's landing Y. Everything that draws the landing
+  // (spawnDrop/spawnStain/ketchup/splash, and the flight-phase check) reads
+  // currentLandY, not a fixed constant, since it now varies per jump.
+  let currentLandY = 0, willHit = true;
+
   function measure() {
     const s = stage.getBoundingClientRect();
     const W = s.width, H = s.height;
@@ -341,50 +561,125 @@
     const t = tip.getBoundingClientRect();
     startX = t.left - s.left - 4;
     startY = t.top - s.top - 44;          // feet on the board
-    driftSpan = W * 0.095;                // how far he travels sideways
+    // Base distance at powerMul=1; scaled per-jump by launch()'s powerMul.
+    // Calibrated so a 125% (green-zone) release covers about half the
+    // screen, leaving room for future distance modifiers to go further still.
+    driftSpan = W * 0.4;                  // how far he travels sideways
 
     // Size the rock and slide it so its flat peak sits under the landing spot.
-    const rockW = Math.max(W * 0.62, 280);
-    const rockH = H * 0.34;
-    rock.style.width  = rockW + 'px';
+    rockWidth = Math.max(W * 0.62, 280);
+    rockH = H * 0.34;
+    rock.style.width  = rockWidth + 'px';
     rock.style.height = rockH + 'px';
-    rock.style.left   = (startX + driftSpan - rockW * 0.425) + 'px';  // peak = 30%..55%
-    landY = (H - rockH) + rockH * 0.14 - 44;
+    rockLeft = startX + driftSpan - rockWidth * 0.425;   // peak = 30%..55%
+    rock.style.left = rockLeft + 'px';
+    rockTop = H - rockH;                  // top of the rock's own box (y=0% of ROCK_TOP)
+    waterLandY = H - 40;                  // short of/past the rock: into the water
   }
   measure();
   addEventListener('resize', measure, { passive: true });
 
-  // ---- ketchup ---------------------------------------------------------
+  // ---- ketchup (or whatever terrain is currently active) ---------------
+  const DEFAULT_NOTE = ["That's Ketchup.", "He's Fine..."];
+  const noteLine1 = $('noteLine1'), noteLine2 = $('noteLine2');
+
+  function spawnDrop(sizeMult, color) {                  // one airborne spray droplet
+    const size = rand(4, 13) * sizeMult;
+    const d = document.createElement('div');
+    d.className = 'drop';
+    d.style.cssText = `width:${size}px;height:${size}px;left:${x + rand(-10, 10)}px;top:${currentLandY + 38}px` +
+      (color ? `;background:${color}` : '');
+    stage.appendChild(d);
+    d.animate(
+      [{ transform: 'translate(0,0) scale(1)', opacity: 1 },
+       { transform: `translate(${rand(-130, 130) * sizeMult}px,${rand(-120, -30) * sizeMult}px) scale(.4)`, opacity: 0 }],
+      { duration: rand(500, 950), easing: 'cubic-bezier(.2,.7,.4,1)' }
+    ).onfinish = () => d.remove();
+  }
+
+  function spawnStain(sizeMult, color) {                 // one stain that soaks in
+    const w = rand(10, 30) * sizeMult;
+    const st = document.createElement('div');
+    st.className = 'stain';
+    st.style.cssText =
+      `width:${w}px;height:${w * rand(.4, .8)}px;opacity:.85;` +
+      `left:${x + rand(-55, 55) * sizeMult}px;top:${currentLandY + rand(34, 56)}px;rotate:${rand(0, 360)}deg` +
+      (color ? `;background:${color}` : '');
+    stage.appendChild(st);
+    setTimeout(() => { st.style.opacity = '0'; }, 400);
+    setTimeout(() => st.remove(), 3200);
+  }
+
   function ketchup() {
-    const frag = document.createDocumentFragment();
-    for (let i = 0; i < 18; i++) {                       // airborne spray
-      const d = document.createElement('div'), size = rand(4, 13);
-      d.className = 'drop';
-      d.style.cssText = `width:${size}px;height:${size}px;left:${x + rand(-10, 10)}px;top:${landY + 38}px`;
-      frag.appendChild(d);
-      d.animate(
-        [{ transform: 'translate(0,0) scale(1)', opacity: 1 },
-         { transform: `translate(${rand(-130, 130)}px,${rand(-120, -30)}px) scale(.4)`, opacity: 0 }],
-        { duration: rand(500, 950), easing: 'cubic-bezier(.2,.7,.4,1)' }
-      ).onfinish = () => d.remove();
+    // Upgrades (mega ketchup / splatter control) scale size, and — for mega
+    // ketchup — spread emission out over `spread` ms so the spray visibly
+    // keeps coming out longer. Individual droplet/stain lifetimes are fixed;
+    // only how long the burst takes to finish emitting changes.
+    // A terrain reskin (fire, spike pit, ...) swaps the color palette and
+    // flavor text; with none active (or by chance, even with some active)
+    // it stays plain ketchup. Both hooks are defined by the auth/upgrades script.
+    const mult = (window.jjSplatMultiplier && window.jjSplatMultiplier()) || { size: 1, spread: 0 };
+    const terrain = (window.jjPickTerrain && window.jjPickTerrain()) || null;
+    const palette = terrain ? terrain.colors : null;
+    const pickColor = () => palette ? palette[Math.floor(Math.random() * palette.length)] : null;
+
+    if (noteLine1 && noteLine2) {
+      const note = terrain ? terrain.note : DEFAULT_NOTE;
+      noteLine1.textContent = note[0];
+      noteLine2.textContent = note[1];
     }
-    for (let i = 0; i < 7; i++) {                        // stains that soak in
-      const st = document.createElement('div'), w = rand(10, 30);
-      st.className = 'stain';
-      st.style.cssText =
-        `width:${w}px;height:${w * rand(.4, .8)}px;opacity:.85;` +
-        `left:${x + rand(-55, 55)}px;top:${landY + rand(34, 56)}px;rotate:${rand(0, 360)}deg`;
-      frag.appendChild(st);
-      setTimeout(() => { st.style.opacity = '0'; }, 400);
-      setTimeout(() => st.remove(), 3200);
+
+    for (let i = 0; i < 18; i++) {
+      const delay = mult.spread > 0 ? rand(0, mult.spread) : 0;
+      const c = pickColor();
+      if (delay <= 0) spawnDrop(mult.size, c); else setTimeout(() => spawnDrop(mult.size, c), delay);
     }
-    stage.appendChild(frag);
+    for (let i = 0; i < 7; i++) {
+      const delay = mult.spread > 0 ? rand(0, mult.spread * 0.7) : 0;
+      const c = pickColor();
+      if (delay <= 0) spawnStain(mult.size, c); else setTimeout(() => spawnStain(mult.size, c), delay);
+    }
+  }
+
+  // Missed the terrain entirely — a plain water splash, unaffected by any
+  // upgrade (no size/spread bonus, no terrain color), and doesn't count.
+  const SPLASH_COLORS = ['#bde7ff', '#e8f7ff'];
+  function splash() {
+    if (noteLine1 && noteLine2) {
+      noteLine1.textContent = "That's Water.";
+      noteLine2.textContent = 'He Missed!';
+    }
+    for (let i = 0; i < 14; i++) spawnDrop(1, SPLASH_COLORS[Math.floor(Math.random() * 2)]);
+    for (let i = 0; i < 5; i++) spawnStain(1, SPLASH_COLORS[Math.floor(Math.random() * 2)]);
   }
 
   // ---- state -----------------------------------------------------------
   let phase = 'idle', t = 0, armed = false;
   let x = 0, y = 0, vx = 0, vy = 0, rot = 0, spin = 0, alpha = 1, sx = 1, sy = 1;
   let gravity = gravityFor(5);
+
+  // ---- power bar ---------------------------------------------------------
+  // Hold JUMP to charge 0 -> 100, bouncing back down if you hold past 100.
+  // Release at 95-100% (green) for 125% distance, 85-95% (yellow) for
+  // 110%; anywhere else, distance just scales with wherever you released.
+  const CHARGE_RATE = 100 / 0.9;         // %/sec — a full 0->100 sweep takes 0.9s
+  let charging = false, power = 0, chargeDir = 1, powerMul = 1;
+
+  function powerMulFor(p) {
+    if (p >= 95) return 1.25;
+    if (p >= 85) return 1.10;
+    return p / 100;
+  }
+  function startCharge() {
+    if (phase !== 'idle' || charging) return;
+    charging = true; power = 0; chargeDir = 1;
+  }
+  function releaseCharge() {
+    if (!charging) return;
+    charging = false;
+    powerMul = Math.max(powerMulFor(power), 0.05);
+    armed = true;
+  }
   const next = (p) => { phase = p; t = 0; };
 
   let angle = 0, angleVel = 0;                           // board spring
@@ -393,21 +688,43 @@
     angle += angleVel * dt;
   }
 
-  // Horizontal speed is derived from the fall time, so he lands on the rock's
-  // flat peak no matter what the speed slider is set to.
-  function launch(s) {
+  // powerMul (from the JUMP power-bar charge) scales how far he actually
+  // travels: undercharging comes up short, a well-timed release flies past
+  // it — and short/long enough to miss the rock's landable zone entirely
+  // lands him in the water instead (no count). Hit/miss, the landing Y (read
+  // off the rock's actual silhouette when it's a hit), and the launch
+  // velocity needed for a properly proportioned arc are all decided here,
+  // once, so the flight below just flies toward that fixed target.
+  function launch(s, powerMul) {
     gravity = gravityFor(s);
-    const v0 = leapFor(s), d = landY - startY;
+
+    const targetX = startX + driftSpan * powerMul;
+    const fracX = (targetX - rockLeft) / rockWidth;    // 0..1 position along the rock (can be outside)
+    willHit = fracX >= ROCK_HIT_MIN && fracX <= ROCK_HIT_MAX;
+    currentLandY = willHit ? (rockTop + rockH * rockTopFrac(fracX) - 44) : waterLandY;
+
+    // v0 solved so the apex (above the launch point) is ARC_RATIO of this
+    // jump's actual horizontal distance, regardless of powerMul or gravity.
+    const hDist = driftSpan * powerMul;
+    const v0 = -Math.sqrt(2 * gravity * ARC_RATIO * hDist);
+    const d = currentLandY - startY;
     const fall = (-v0 + Math.sqrt(v0 * v0 + 2 * gravity * d)) / gravity;
     vy = v0;
-    vx = driftSpan / fall;
+    vx = hDist / fall;
     spin = rand(300, 560) * Math.min(1.6, 1 / fall);
   }
 
   function update(dt) {
     t += dt;
+
+    if (charging) {
+      power += chargeDir * CHARGE_RATE * dt;
+      if (power >= 100) { power = 100; chargeDir = -1; }
+      else if (power <= 0) { power = 0; chargeDir = 1; }
+    }
+
     switch (phase) {
-      case 'idle':                        // standing on the board, waiting
+      case 'idle':                        // standing on the board, waiting (or charging)
         x = startX; y = startY; rot = 0; sx = sy = 1;
         alpha = clamp01(t / 0.3);
         spring(dt, 0);
@@ -417,23 +734,29 @@
       case 'crouch':                      // dip the board
         x = startX; y = startY; alpha = 1;
         spring(dt, -6);
-        if (t > 0.3) { launch(+speed.value); angleVel = 70; next('flight'); }
+        if (t > 0.3) { launch(+speed.value, powerMul); angleVel = 70; next('flight'); }
         break;
 
       case 'flight':                      // ballistic fall
         vy += gravity * dt;
         x += vx * dt; y += vy * dt; rot += spin * dt;
         spring(dt, 0);
-        if (y >= landY) {
-          y = landY; rot = 0; sx = 2.0; sy = 0.18;
-          ketchup();
-          window.jjCountJump && window.jjCountJump();
+        if (y >= currentLandY) {
+          y = currentLandY; rot = 0;
+          if (willHit) {
+            sx = 2.0; sy = 0.18;
+            ketchup();
+            window.jjCountJump && window.jjCountJump();
+          } else {
+            sx = 1.4; sy = 0.4;
+            splash();
+          }
           next('splat');
         }
         break;
 
-      case 'splat':                       // flattened on the rock
-        y = landY; spring(dt, 0);
+      case 'splat':                       // flattened on the rock (or bobbing in the water)
+        y = currentLandY; spring(dt, 0);
         if (t > 1.0) next('clear');
         break;
 
@@ -459,12 +782,37 @@
     diver.style.opacity = alpha;
     squash.style.transform = `scale(${sx}, ${sy})`;
     board.style.transform = `rotate(${angle}deg)`;
+    jumpFill.style.width = (charging ? power : 0) + '%';
+    jumpLabel.textContent = charging ? Math.round(power) + '%' : 'JUMP';
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
 
   // ---- controls --------------------------------------------------------
-  btn.addEventListener('click', () => { if (phase === 'idle') armed = true; });
+  btn.addEventListener('mousedown', startCharge);
+  btn.addEventListener('touchstart', (e) => { e.preventDefault(); startCharge(); }, { passive: false });
+  addEventListener('mouseup', releaseCharge);
+  addEventListener('touchend', releaseCharge);
+  addEventListener('touchcancel', releaseCharge);
+
+  // Holding spacebar works the same as holding the JUMP button — but not
+  // while typing (chat box, name/PIN fields), where space should just type.
+  function isTypingTarget(el) {
+    if (!el) return false;
+    return el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable;
+  }
+  addEventListener('keydown', (e) => {
+    if (e.code !== 'Space' || e.repeat) return;
+    if (isTypingTarget(document.activeElement)) return;
+    e.preventDefault();
+    startCharge();
+  });
+  addEventListener('keyup', (e) => {
+    if (e.code !== 'Space') return;
+    e.preventDefault();
+    releaseCharge();
+  });
+
   speed.addEventListener('input', () => { speedOut.textContent = speed.value; });
 })();
 </script>
@@ -473,11 +821,245 @@
 (() => {
   const $ = (id) => document.getElementById(id);
   const box = $('authBox');
-  const lbBtn = $('leaderboardBtn'), lbOverlay = $('lbOverlay'),
-        lbList = $('lbList'), lbClose = $('lbClose');
+  const speedLabel = $('speedLabel'), speed = $('speed');
+  const splatterLabel = $('splatterLabel'), splatter = $('splatter'), splatterOut = $('splatterOut');
+  const upOverlay = $('upgradeOverlay'), upAck = $('upgradeAck');
+  const infoOverlay = $('infoOverlay'), infoClose = $('infoClose');
+  const lbBoxList = $('lbBoxList'), lbBoxYou = $('lbBoxYou');
+  const chatLog = $('chatLog'), chatForm = $('chatForm'), chatInput = $('chatInput');
+  const unlocksList = $('unlocksList');
 
   let session = { loggedIn: false, username: '', jumpCount: 0 };
   let pendingName = '';
+
+  // ---- upgrades ------------------------------------------------------------
+  // Terrain reskins: 10 landing themes sharing one combined 1% unlock pool
+  // (0.1% each, matching the api/lib.php UPGRADES registry). Each owns a
+  // color palette for the splat particles and a two-line flavor note that
+  // replaces "That's Ketchup. / He's Fine..." — see jjPickTerrain() below.
+  const terrainUnlockText = '0.1% chance on every jump.';
+  const terrainFont = '800 22px "Segoe UI", monospace';
+  const TERRAIN_INFO = {
+    terrain_fire: {
+      name: 'Fire', icon: '🔥', font: terrainFont, color: '#ff6a00',
+      colors: ['#ff6a00', '#ff9800'],
+      desc: 'Landings spray fire instead of ketchup.',
+      unlock: terrainUnlockText, note: ["That's Fire.", "He's Toast."],
+    },
+    terrain_spike_pit: {
+      name: 'Spike Pit', icon: '🗡️', font: terrainFont, color: '#8a5a5a',
+      colors: ['#8a5a5a', '#5c3a3a'],
+      desc: 'Landings spray a grim burst of spikes instead of ketchup.',
+      unlock: terrainUnlockText, note: ['Those are Spikes.', "He's... Ventilated."],
+    },
+    terrain_lava: {
+      name: 'Lava', icon: '🌋', font: terrainFont, color: '#ff3d00',
+      colors: ['#ff3d00', '#ff7043'],
+      desc: 'Landings spray molten lava instead of ketchup.',
+      unlock: terrainUnlockText, note: ["That's Lava.", "He's Well Done."],
+    },
+    terrain_ice: {
+      name: 'Ice', icon: '🧊', font: terrainFont, color: '#3fa9d9',
+      colors: ['#8fd9ff', '#bde7ff'],
+      desc: 'Landings spray shattered ice instead of ketchup.',
+      unlock: terrainUnlockText, note: ["That's Ice.", "He's Chillin'."],
+    },
+    terrain_toxic_slime: {
+      name: 'Toxic Slime', icon: '☣️', font: terrainFont, color: '#5fb800',
+      colors: ['#7ee81f', '#aef23f'],
+      desc: 'Landings spray toxic slime instead of ketchup.',
+      unlock: terrainUnlockText, note: ["That's Toxic Slime.", "He's Mutating."],
+    },
+    terrain_confetti: {
+      name: 'Confetti', icon: '🎉', font: terrainFont, color: '#e91e63',
+      colors: ['#ff5252', '#ffca28', '#42a5f5', '#66bb6a', '#ab47bc'],
+      desc: 'Landings burst into confetti instead of ketchup.',
+      unlock: terrainUnlockText, note: ["That's Confetti.", "He's Celebrated."],
+    },
+    terrain_bees: {
+      name: 'Bees', icon: '🐝', font: terrainFont, color: '#d4a017',
+      colors: ['#ffca28', '#2b2b2b'],
+      desc: 'Landings scatter a swarm of bees instead of ketchup.',
+      unlock: terrainUnlockText, note: ['Those are Bees.', "He's Not Allergic. Probably."],
+    },
+    terrain_bubblegum: {
+      name: 'Bubblegum', icon: '🍬', font: terrainFont, color: '#ff6fae',
+      colors: ['#ff6fae', '#ff9ecb'],
+      desc: 'Landings spray bubblegum instead of ketchup.',
+      unlock: terrainUnlockText, note: ["That's Bubblegum.", "He's Stuck."],
+    },
+    terrain_electric: {
+      name: 'Electric', icon: '⚡', font: terrainFont, color: '#c6d900',
+      colors: ['#e6ff00', '#00e5ff'],
+      desc: 'Landings spark with electricity instead of ketchup.',
+      unlock: terrainUnlockText, note: ["That's Electric.", "He's Buzzing."],
+    },
+    terrain_glitter: {
+      name: 'Glitter', icon: '✨', font: terrainFont, color: '#ab47bc',
+      colors: ['#ffd54f', '#f06292', '#4fc3f7', '#ba68c8', '#81c784'],
+      desc: 'Landings sparkle with glitter instead of ketchup.',
+      unlock: terrainUnlockText, note: ["That's Glitter.", "He's Fabulous."],
+    },
+  };
+  const TERRAIN_KEYS = Object.keys(TERRAIN_INFO);
+
+  const UPGRADE_INFO = {
+    mega_ketchup: {
+      name: 'Mega Ketchup', icon: '🍅',
+      font: '800 26px "Comic Sans MS", "Chalkboard SE", cursive, sans-serif',
+      color: 'var(--ketchup)',
+      desc: 'Splats come out 2.5x bigger, and keep spraying for a bit instead of all landing at once.',
+      unlock: '1% chance on every jump.',
+    },
+    splatter_control: {
+      name: 'Splatter Control', icon: '🎛️',
+      font: '800 22px "Segoe UI", monospace',
+      color: 'var(--water)',
+      desc: 'Unlocks the Splat Size slider so you can scale your splatter from 0.5x up to 2x.',
+      unlock: '2.5% chance on every jump.',
+    },
+    gravity_master: {
+      name: 'Gravity Master', icon: '🪐',
+      font: '800 22px "Segoe UI", monospace',
+      color: '#7c4fe0',
+      desc: 'Unlocks the Fall Speed slider so you can control how fast — and how far — you fall.',
+      unlock: '2.5% chance on every jump.',
+    },
+    ...TERRAIN_INFO,
+  };
+
+  // upgrades[key] exists (with {enabled}) only for owned upgrades; a key
+  // absent from this object is locked. This is what the Unlocks box and
+  // jjSplatMultiplier both read from.
+  let upgrades = {};
+
+  function isActive(key) {
+    return !!(upgrades[key] && upgrades[key].enabled);
+  }
+
+  function resetUpgrades() {
+    upgrades = {};
+    syncUpgradeUI();
+  }
+
+  function applyUpgrade(key, enabled = true) {
+    if (!(key in UPGRADE_INFO)) return;
+    upgrades[key] = { enabled };
+    syncUpgradeUI();
+  }
+
+  function syncUpgradeUI() {
+    const gravityOn = isActive('gravity_master');
+    speed.disabled = !gravityOn;
+    speedLabel.classList.toggle('locked', !gravityOn);
+
+    const splatterOn = isActive('splatter_control');
+    splatter.disabled = !splatterOn;
+    splatterLabel.classList.toggle('locked', !splatterOn);
+
+    renderUnlocksList();
+  }
+
+  function renderUnlocksList() {
+    unlocksList.innerHTML = '';
+    Object.keys(UPGRADE_INFO).forEach((key) => {
+      const info = UPGRADE_INFO[key];
+      const owned = key in upgrades;
+      const enabled = owned && upgrades[key].enabled;
+      const li = document.createElement('li');
+
+      const infoWrap = document.createElement('div');
+      infoWrap.className = 'upInfo';
+      infoWrap.tabIndex = 0;
+      infoWrap.setAttribute('role', 'button');
+      infoWrap.setAttribute('aria-label', `About ${info.name}`);
+      const icon = document.createElement('span');
+      icon.className = 'upIcon'; icon.textContent = info.icon;
+      const name = document.createElement('span');
+      name.className = 'upName'; name.textContent = info.name;
+      infoWrap.append(icon, name);
+      infoWrap.addEventListener('click', () => openUpgradeInfo(key));
+      infoWrap.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openUpgradeInfo(key); }
+      });
+
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'upToggle ' + (!owned ? 'locked' : enabled ? 'enabled' : 'disabled');
+      btn.textContent = !owned ? 'Locked' : enabled ? 'Enabled' : 'Disabled';
+      if (owned) btn.addEventListener('click', () => toggleUpgrade(key));
+
+      li.append(infoWrap, btn);
+      unlocksList.appendChild(li);
+    });
+  }
+
+  async function toggleUpgrade(key) {
+    const { ok, data } = await api('/api/toggle-upgrade.php', { key });
+    if (ok) { upgrades[key] = { enabled: data.enabled }; syncUpgradeUI(); }
+  }
+
+  // ---- upgrade info popup (click an icon/name in the Unlocks box) --------
+  function openUpgradeInfo(key) {
+    const info = UPGRADE_INFO[key];
+    if (!info) return;
+    $('infoIcon').textContent = info.icon;
+    $('infoName').textContent = info.name;
+    $('infoDesc').textContent = info.desc;
+    $('infoUnlock').textContent = 'How to unlock: ' + info.unlock;
+    infoOverlay.hidden = false;
+  }
+  function closeUpgradeInfo() { infoOverlay.hidden = true; }
+  infoClose.addEventListener('click', closeUpgradeInfo);
+  infoOverlay.addEventListener('click', (e) => { if (e.target === infoOverlay) closeUpgradeInfo(); });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && !infoOverlay.hidden) closeUpgradeInfo(); });
+
+  // Splatter size slider: 5 = original size (1x), 10 = 2x, 1 = 0.5x.
+  function splatterSizeMul(v) {
+    return v <= 5 ? 0.5 + (v - 1) * (0.5 / 4) : 1 + (v - 5) * (1 / 5);
+  }
+
+  window.jjSplatMultiplier = function () {
+    let size = 1, spread = 0;
+    if (isActive('splatter_control')) size *= splatterSizeMul(Number(splatter.value));
+    if (isActive('mega_ketchup')) { size *= 2.5; spread = 280; }
+    return { size, spread };
+  };
+
+  // Randomly picks one enabled terrain reskin for this landing. Plain
+  // ketchup only happens when no terrain is unlocked+enabled at all — once
+  // you have one active it's used every time (mega ketchup's size/spread
+  // multiplier still applies on top of whichever terrain gets picked, it
+  // doesn't compete with it for which one shows).
+  window.jjPickTerrain = function () {
+    const active = TERRAIN_KEYS.filter(isActive);
+    if (!active.length) return null;
+    const pick = active[Math.floor(Math.random() * active.length)];
+    return TERRAIN_INFO[pick];
+  };
+
+  splatter.addEventListener('input', () => { splatterOut.textContent = splatter.value; });
+
+  const upgradeQueue = [];
+  let upgradeShowing = false;
+  function queueUpgrade(key) {
+    const info = UPGRADE_INFO[key];
+    if (!info) return;
+    upgradeQueue.push(info);
+    if (!upgradeShowing) showNextUpgrade();
+  }
+  function showNextUpgrade() {
+    const info = upgradeQueue.shift();
+    if (!info) { upgradeShowing = false; return; }
+    upgradeShowing = true;
+    $('upgradeIcon').textContent = info.icon;
+    const nameEl = $('upgradeName');
+    nameEl.textContent = info.name;
+    nameEl.style.font = info.font;
+    nameEl.style.color = info.color;
+    upOverlay.hidden = false;
+  }
+  upAck.addEventListener('click', () => { upOverlay.hidden = true; showNextUpgrade(); });
 
   async function api(path, body) {
     const res = await fetch(path, {
@@ -570,29 +1152,42 @@
     const { ok, data } = await api(url, { username: pendingName, pin });
     if (!ok) { showMsg(data.error || 'Something went wrong.'); return; }
     session = { loggedIn: true, username: data.username, jumpCount: data.jumpCount };
+    resetUpgrades();
+    (data.upgrades || []).forEach((u) => applyUpgrade(u.key, u.enabled));
     renderLoggedIn();
+    chatInput.disabled = false;
+    chatInput.placeholder = 'say something...';
   }
 
   async function doLogout() {
     await api('/api/logout.php', {});
     session = { loggedIn: false, username: '', jumpCount: 0 };
+    resetUpgrades();
     renderLoggedOut();
+    chatInput.disabled = true;
+    chatInput.placeholder = 'log in to chat';
   }
 
   async function init() {
     const { ok, data } = await api('/api/me.php');
     if (ok && data.loggedIn) {
       session = { loggedIn: true, username: data.username, jumpCount: data.jumpCount };
+      (data.upgrades || []).forEach((u) => applyUpgrade(u.key, u.enabled));
       renderLoggedIn();
+      chatInput.disabled = false;
+      chatInput.placeholder = 'say something...';
     } else {
       renderLoggedOut();
     }
   }
+  syncUpgradeUI();
   init();
 
   // Called from the game loop exactly when the ketchup splat animation
   // fires (landing) — never on the button click, so spamming JUMP while
-  // disabled can't inflate the count.
+  // disabled can't inflate the count. Upgrades are rolled server-side on
+  // this same call; a newly-unlocked one pops up but only takes effect
+  // (via jjSplatMultiplier) starting with the next jump.
   window.jjCountJump = async function () {
     if (!session.loggedIn) return;
     const { ok, data } = await api('/api/jump.php', {});
@@ -600,20 +1195,17 @@
       session.jumpCount = data.jumpCount;
       const el = $('authJumps');
       if (el) el.textContent = session.jumpCount;
+      (data.newUpgrades || []).forEach((key) => { applyUpgrade(key); queueUpgrade(key); });
+      pollLeaderboardBox();
     }
   };
 
-  // ---- leaderboard -------------------------------------------------------
-  async function openLeaderboard() {
-    lbOverlay.hidden = false;
-    lbList.innerHTML = '<li class="lbLoading">Loading…</li>';
+  // ---- sidebar: leaderboard (top 10 + your rank), polled periodically ----
+  async function pollLeaderboardBox() {
     const { ok, data } = await api('/api/leaderboard.php');
-    if (!ok || !data.leaders || !data.leaders.length) {
-      lbList.innerHTML = '<li class="lbLoading">No jumps yet. Be the first!</li>';
-      return;
-    }
-    lbList.innerHTML = '';
-    data.leaders.forEach((row, i) => {
+    if (!ok) return;
+    lbBoxList.innerHTML = '';
+    (data.leaders || []).forEach((row, i) => {
       const li = document.createElement('li');
       const rank = document.createElement('span');
       rank.className = 'lbRank'; rank.textContent = (i + 1) + '.';
@@ -622,15 +1214,63 @@
       const count = document.createElement('span');
       count.className = 'lbCount'; count.textContent = row.jumpCount;
       li.append(rank, name, count);
-      lbList.appendChild(li);
+      lbBoxList.appendChild(li);
     });
+    if (data.you) {
+      lbBoxYou.hidden = false;
+      lbBoxYou.textContent = `You're #${data.you.rank} with ${data.you.jumpCount} jumps!`;
+    } else {
+      lbBoxYou.hidden = true;
+    }
   }
-  function closeLeaderboard() { lbOverlay.hidden = true; }
+  pollLeaderboardBox();
+  setInterval(pollLeaderboardBox, 6000);
 
-  lbBtn.addEventListener('click', openLeaderboard);
-  lbClose.addEventListener('click', closeLeaderboard);
-  lbOverlay.addEventListener('click', (e) => { if (e.target === lbOverlay) closeLeaderboard(); });
-  addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lbOverlay.hidden) closeLeaderboard(); });
+  // ---- sidebar: chat, polled for new messages ----------------------------
+  let chatLastId = 0;
+
+  function renderChatMessage(m) {
+    const atBottom = chatLog.scrollHeight - chatLog.scrollTop - chatLog.clientHeight < 40;
+    const div = document.createElement('div');
+    div.className = 'chatMsg' +
+      (m.kind === 'cheat' ? ' cheat' : m.kind === 'system' ? ' system' :
+       m.kind === 'update' ? ' update' : m.kind === 'bot' ? ' bot' : '');
+    if (m.kind === 'cheat' || m.kind === 'system' || m.kind === 'update') {
+      div.textContent = m.message;
+    } else {
+      const who = document.createElement('span');
+      who.className = 'chatWho';
+      who.textContent = (m.kind === 'bot' ? '🤖 ' : '') + m.username + ': ';
+      div.append(who, document.createTextNode(m.message));
+    }
+    chatLog.appendChild(div);
+    chatLastId = Math.max(chatLastId, m.id);
+    if (atBottom) chatLog.scrollTop = chatLog.scrollHeight;
+  }
+
+  async function pollChat() {
+    const { ok, data } = await api(chatLastId ? `/api/chat.php?after=${chatLastId}` : '/api/chat.php');
+    if (ok && data.messages) data.messages.forEach(renderChatMessage);
+  }
+  pollChat();
+  setInterval(pollChat, 2500);
+
+  chatForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!session.loggedIn) return;
+    const text = chatInput.value.trim();
+    if (!text) return;
+    chatInput.disabled = true;
+    const { ok, data } = await api('/api/chat.php', { message: text });
+    chatInput.disabled = false;
+    if (ok) {
+      chatInput.value = '';
+      pollChat();
+    } else {
+      chatInput.placeholder = data.error || 'Could not send.';
+    }
+    chatInput.focus();
+  });
 })();
 </script>
 </body>

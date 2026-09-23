@@ -31,4 +31,4 @@ session_regenerate_id(true);
 $_SESSION['uid'] = (int) $pdo->lastInsertId();
 $_SESSION['username'] = $username;
 
-json_out(['ok' => true, 'username' => $username, 'jumpCount' => 0]);
+json_out(['ok' => true, 'username' => $username, 'jumpCount' => 0, 'upgrades' => []]);
