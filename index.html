@@ -127,6 +127,12 @@
   #unlocksList button.upToggle.locked { background: rgba(0,0,0,.12); color: inherit; opacity: .55; cursor: default; }
   #unlocksList button.upToggle.enabled { background: var(--ketchup); color: #fff; }
   #unlocksList button.upToggle.disabled { background: rgba(0,0,0,.12); color: inherit; }
+  #unlocksList li.upCategory {
+    grid-column: 1 / -1; display: block; margin-top: 4px; padding-top: 6px;
+    font: 800 10px/1 inherit; letter-spacing: .06em; text-transform: uppercase;
+    opacity: .55; border-top: 1px solid rgba(0,0,0,.12);
+  }
+  #unlocksList li.upCategory:first-child { margin-top: 0; padding-top: 0; border-top: none; }
 
   @media (max-width: 1150px) {
     #sidebar { display: none; }
@@ -169,6 +175,20 @@
   #rock::after {
     content: ""; position: absolute; inset: 0;
     background: linear-gradient(160deg, rgba(255,255,255,.26) 0 18%, transparent 40%);
+  }
+  /* Spike Pit terrain: swaps the rock's silhouette for a bed of spikes —
+     short ones the full width so there's no leftover smooth "rock" corner,
+     four tall/landable ones in the middle (see SPIKE_TOP in the game
+     script — these percentages must match). */
+  #rock.spikes {
+    background: linear-gradient(155deg,
+      color-mix(in srgb, #8a5a5a 130%, white) 0%,
+      #8a5a5a 45%,
+      color-mix(in srgb, #5c3a3a 70%, black) 100%);
+    clip-path: polygon(0% 100%, 4% 80%, 10% 55%, 17% 75%, 23% 50%,
+                       28.5% 62%, 32% 6%, 36% 62%, 39% 6%, 43% 62%,
+                       47% 6%, 50% 62%, 54% 6%, 57.5% 62%,
+                       63.5% 50%, 70% 75%, 76% 55%, 83% 80%, 90% 95%, 100% 100%);
   }
 
   /* ---------- ladder + board ---------- */
@@ -536,6 +556,31 @@
     return 1;
   }
 
+  // Spike Pit terrain (see TERRAIN_INFO.terrain_spike_pit): spikes cover
+  // the rock's full width — short ones flanking the sides (unlandable,
+  // just so there's no leftover smooth "plain rock" shoulder poking out
+  // next to the danger zone) and four tall ones in the middle, landable
+  // only right at their tips — half the width of the rock's own landable
+  // zone (ROCK_HIT_MAX - ROCK_HIT_MIN), centered on the same middle point,
+  // so it's meaningfully harder to hit. Percentages here must match
+  // #rock.spikes's clip-path in the stylesheet.
+  const SPIKE_HIT_MIN = 0.285, SPIKE_HIT_MAX = 0.575;
+  const SPIKE_TOP = [
+    [0.00, 1.00], [0.04, 0.80], [0.10, 0.55], [0.17, 0.75], [0.23, 0.50],
+    [0.285, 0.62], [0.32, 0.06], [0.36, 0.62], [0.39, 0.06], [0.43, 0.62],
+    [0.47, 0.06], [0.50, 0.62], [0.54, 0.06], [0.575, 0.62],
+    [0.635, 0.50], [0.70, 0.75], [0.76, 0.55], [0.83, 0.80], [0.90, 0.95], [1.00, 1.00],
+  ];
+
+  function spikeTopFrac(fx) {                       // interpolate SPIKE_TOP at fx in [0,1]
+    fx = fx < 0 ? 0 : fx > 1 ? 1 : fx;
+    for (let i = 1; i < SPIKE_TOP.length; i++) {
+      const [x0, y0] = SPIKE_TOP[i - 1], [x1, y1] = SPIKE_TOP[i];
+      if (fx <= x1) return y0 + (y1 - y0) * (fx - x0) / (x1 - x0);
+    }
+    return 1;
+  }
+
   // Apex height (above the launch point) is this fraction of the actual
   // horizontal distance travelled this jump, so the arc looks like a proper
   // "up, then out" basketball shot at every power level — a short hop gets a
@@ -553,6 +598,16 @@
   // (spawnDrop/spawnStain/ketchup/splash, and the flight-phase check) reads
   // currentLandY, not a fixed constant, since it now varies per jump.
   let currentLandY = 0, willHit = true;
+  // Spike Pit is a live toggle, not a per-jump roll — the rock is spikes
+  // on every landing for as long as it's unlocked+enabled (its shape is
+  // kept in sync reactively by syncUpgradeUI in the auth/upgrades script,
+  // the instant the upgrade turns on/off — not deferred to the next jump).
+  function isSpikePit() { return !!(window.jjSpikePit && window.jjSpikePit()); }
+
+  // Set the instant a jump is armed (see the 'idle' case below) and read
+  // once at landing, then cleared — a one-shot proof-of-attempt token for
+  // jump.php, see jjStartJump/jjCountJump in the auth/upgrades script.
+  let pendingNonce = null;
 
   function measure() {
     const s = stage.getBoundingClientRect();
@@ -616,10 +671,12 @@
     // keeps coming out longer. Individual droplet/stain lifetimes are fixed;
     // only how long the burst takes to finish emitting changes.
     // A terrain reskin (fire, spike pit, ...) swaps the color palette and
-    // flavor text; with none active (or by chance, even with some active)
-    // it stays plain ketchup. Both hooks are defined by the auth/upgrades script.
+    // flavor text; with none active it stays plain ketchup. Spike Pit isn't
+    // part of the random pick — whenever it's active you always land on
+    // spikes, so its flavor always wins over the random cosmetic pool.
     const mult = (window.jjSplatMultiplier && window.jjSplatMultiplier()) || { size: 1, spread: 0 };
-    const terrain = (window.jjPickTerrain && window.jjPickTerrain()) || null;
+    const terrain = (window.jjSpikePit && window.jjSpikePit()) ||
+      (window.jjPickTerrain && window.jjPickTerrain()) || null;
     const palette = terrain ? terrain.colors : null;
     const pickColor = () => palette ? palette[Math.floor(Math.random() * palette.length)] : null;
 
@@ -698,10 +755,15 @@
   function launch(s, powerMul) {
     gravity = gravityFor(s);
 
+    const spikePit = isSpikePit();
+    const hitMin = spikePit ? SPIKE_HIT_MIN : ROCK_HIT_MIN;
+    const hitMax = spikePit ? SPIKE_HIT_MAX : ROCK_HIT_MAX;
+
     const targetX = startX + driftSpan * powerMul;
     const fracX = (targetX - rockLeft) / rockWidth;    // 0..1 position along the rock (can be outside)
-    willHit = fracX >= ROCK_HIT_MIN && fracX <= ROCK_HIT_MAX;
-    currentLandY = willHit ? (rockTop + rockH * rockTopFrac(fracX) - 44) : waterLandY;
+    willHit = fracX >= hitMin && fracX <= hitMax;
+    const topFrac = spikePit ? spikeTopFrac(fracX) : rockTopFrac(fracX);
+    currentLandY = willHit ? (rockTop + rockH * topFrac - 44) : waterLandY;
 
     // v0 solved so the apex (above the launch point) is ARC_RATIO of this
     // jump's actual horizontal distance, regardless of powerMul or gravity.
@@ -728,7 +790,12 @@
         x = startX; y = startY; rot = 0; sx = sy = 1;
         alpha = clamp01(t / 0.3);
         spring(dt, 0);
-        if (armed) { armed = false; next('crouch'); }
+        if (armed) {
+          armed = false;
+          pendingNonce = null;
+          if (window.jjStartJump) window.jjStartJump().then((n) => { pendingNonce = n; });
+          next('crouch');
+        }
         break;
 
       case 'crouch':                      // dip the board
@@ -745,8 +812,10 @@
           y = currentLandY; rot = 0;
           if (willHit) {
             sx = 2.0; sy = 0.18;
+            const points = isSpikePit() ? 10 : 1;   // spikes are half the width to land, worth 10x
+            const nonce = pendingNonce; pendingNonce = null;
             ketchup();
-            window.jjCountJump && window.jjCountJump();
+            window.jjCountJump && window.jjCountJump(points, nonce);
           } else {
             sx = 1.4; sy = 0.4;
             splash();
@@ -904,14 +973,8 @@
   const TERRAIN_KEYS = Object.keys(TERRAIN_INFO);
 
   const UPGRADE_INFO = {
-    mega_ketchup: {
-      name: 'Mega Ketchup', icon: '🍅',
-      font: '800 26px "Comic Sans MS", "Chalkboard SE", cursive, sans-serif',
-      color: 'var(--ketchup)',
-      desc: 'Splats come out 2.5x bigger, and keep spraying for a bit instead of all landing at once.',
-      unlock: '1% chance on every jump.',
-    },
     splatter_control: {
+      category: 'Settings',
       name: 'Splatter Control', icon: '🎛️',
       font: '800 22px "Segoe UI", monospace',
       color: 'var(--water)',
@@ -919,13 +982,26 @@
       unlock: '2.5% chance on every jump.',
     },
     gravity_master: {
+      category: 'Settings',
       name: 'Gravity Master', icon: '🪐',
       font: '800 22px "Segoe UI", monospace',
       color: '#7c4fe0',
       desc: 'Unlocks the Fall Speed slider so you can control how fast — and how far — you fall.',
       unlock: '2.5% chance on every jump.',
     },
-    ...TERRAIN_INFO,
+    mega_ketchup: {
+      category: 'Effects',
+      name: 'Mega Ketchup', icon: '🍅',
+      font: '800 26px "Comic Sans MS", "Chalkboard SE", cursive, sans-serif',
+      color: 'var(--ketchup)',
+      desc: 'Splats come out 2.5x bigger, and keep spraying for a bit instead of all landing at once.',
+      unlock: '1% chance on every jump.',
+    },
+    // Terrain reskins all land in the Terrains group; tag them here rather
+    // than repeating `category` in all 10 TERRAIN_INFO entries above.
+    ...Object.fromEntries(Object.entries(TERRAIN_INFO).map(
+      ([key, info]) => [key, { ...info, category: 'Terrains' }]
+    )),
   };
 
   // upgrades[key] exists (with {enabled}) only for owned upgrades; a key
@@ -957,13 +1033,36 @@
     splatter.disabled = !splatterOn;
     splatterLabel.classList.toggle('locked', !splatterOn);
 
+    // Spike Pit is a hazard, not just a splat-color reskin: whenever it's
+    // unlocked+enabled the rock itself IS spikes, so this has to update the
+    // instant the upgrade toggles (or loads on login) rather than waiting
+    // for the game script to notice on the next jump attempt.
+    const rockEl = document.getElementById('rock');
+    if (rockEl) rockEl.classList.toggle('spikes', isActive('terrain_spike_pit'));
+
     renderUnlocksList();
   }
 
+  // Displayed in this order, with a small header row before each group
+  // (skipped if a category ends up with no entries at all).
+  const UPGRADE_CATEGORY_ORDER = ['Settings', 'Effects', 'Terrains'];
+
   function renderUnlocksList() {
     unlocksList.innerHTML = '';
-    Object.keys(UPGRADE_INFO).forEach((key) => {
+    const keysByCategory = Object.keys(UPGRADE_INFO).sort(
+      (a, b) => UPGRADE_CATEGORY_ORDER.indexOf(UPGRADE_INFO[a].category) -
+                UPGRADE_CATEGORY_ORDER.indexOf(UPGRADE_INFO[b].category)
+    );
+    let lastCategory = null;
+    keysByCategory.forEach((key) => {
       const info = UPGRADE_INFO[key];
+      if (info.category !== lastCategory) {
+        lastCategory = info.category;
+        const header = document.createElement('li');
+        header.className = 'upCategory';
+        header.textContent = lastCategory;
+        unlocksList.appendChild(header);
+      }
       const owned = key in upgrades;
       const enabled = owned && upgrades[key].enabled;
       const li = document.createElement('li');
@@ -1035,7 +1134,16 @@
     const active = TERRAIN_KEYS.filter(isActive);
     if (!active.length) return null;
     const pick = active[Math.floor(Math.random() * active.length)];
-    return TERRAIN_INFO[pick];
+    return { key: pick, ...TERRAIN_INFO[pick] };
+  };
+
+  // Spike Pit isn't part of the random splat-color pool above — while it's
+  // unlocked+enabled the rock IS spikes on every landing (see syncUpgradeUI
+  // for the rock's shape, and the game script's isSpikePit()/launch() for
+  // the hitbox), not just an occasional pick, so it needs its own live
+  // active/inactive check the game script can call at any time.
+  window.jjSpikePit = function () {
+    return isActive('terrain_spike_pit') ? { key: 'terrain_spike_pit', ...TERRAIN_INFO.terrain_spike_pit } : null;
   };
 
   splatter.addEventListener('input', () => { splatterOut.textContent = splatter.value; });
@@ -1188,9 +1296,9 @@
   // disabled can't inflate the count. Upgrades are rolled server-side on
   // this same call; a newly-unlocked one pops up but only takes effect
   // (via jjSplatMultiplier) starting with the next jump.
-  window.jjCountJump = async function () {
+  window.jjCountJump = async function (points = 1, nonce = null) {
     if (!session.loggedIn) return;
-    const { ok, data } = await api('/api/jump.php', {});
+    const { ok, data } = await api('/api/jump.php', { points, nonce });
     if (ok) {
       session.jumpCount = data.jumpCount;
       const el = $('authJumps');
@@ -1198,6 +1306,17 @@
       (data.newUpgrades || []).forEach((key) => { applyUpgrade(key); queueUpgrade(key); });
       pollLeaderboardBox();
     }
+  };
+
+  // Called the moment a real jump begins (JUMP released, crouch about to
+  // start) — proves to jump.php that a counted landing was actually
+  // preceded by a crouch+flight, not a bare POST. See JUMP_ATTEMPT_MIN/
+  // MAX_SECONDS in api/lib.php for the timing window this nonce has to
+  // fall inside to redeem.
+  window.jjStartJump = async function () {
+    if (!session.loggedIn) return null;
+    const { ok, data } = await api('/api/jump-start.php', {});
+    return ok ? data.nonce : null;
   };
 
   // ---- sidebar: leaderboard (top 10 + your rank), polled periodically ----
