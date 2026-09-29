@@ -4,9 +4,9 @@ require __DIR__ . '/lib.php';
 start_session();
 require_method('POST');
 
-if (empty($_SESSION['uid'])) {
-    json_out(['error' => 'not logged in'], 401);
-}
+$pdo = db();
+$user = require_session($pdo);
+$uid = (int) $user['id'];
 
 $in = json_in();
 $key = (string) ($in['key'] ?? '');
@@ -14,9 +14,6 @@ $key = (string) ($in['key'] ?? '');
 if (!array_key_exists($key, UPGRADES)) {
     json_out(['error' => 'unknown upgrade'], 400);
 }
-
-$pdo = db();
-$uid = (int) $_SESSION['uid'];
 
 $stmt = $pdo->prepare('SELECT enabled FROM user_upgrades WHERE user_id = ? AND upgrade_key = ?');
 $stmt->execute([$uid, $key]);

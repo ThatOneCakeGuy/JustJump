@@ -75,10 +75,66 @@ function db(): PDO {
     add_column_if_missing($pdo, 'users', 'req_window_start REAL NOT NULL DEFAULT 0');
     add_column_if_missing($pdo, 'users', 'req_window_count INTEGER NOT NULL DEFAULT 0');
     add_column_if_missing($pdo, 'users', 'last_cheat_flag_at INTEGER NOT NULL DEFAULT 0');
+    // Single-session enforcement (see issue_session_token/session_user):
+    // whichever login most recently wrote this token is the only one whose
+    // session still validates.
+    add_column_if_missing($pdo, 'users', "session_token TEXT NOT NULL DEFAULT ''");
+    // Jump-attempt nonce (see /api/jump-start.php and jump.php): proves a
+    // counted jump was preceded by an actual crouch+flight, not a bare POST.
+    add_column_if_missing($pdo, 'users', "pending_jump_nonce TEXT NOT NULL DEFAULT ''");
+    add_column_if_missing($pdo, 'users', 'pending_jump_started_at REAL NOT NULL DEFAULT 0');
+    add_column_if_missing($pdo, 'users', 'last_jump_completed_at REAL NOT NULL DEFAULT 0');
     ensure_upgrades_table($pdo);
     ensure_chat_table($pdo);
     ensure_ip_bans_table($pdo);
+    // Leaderboard sorts by jump_count on every poll (every few seconds, per
+    // visitor) — cheap to index, table only grows.
+    $pdo->exec('CREATE INDEX IF NOT EXISTS idx_users_jump_count ON users(jump_count DESC)');
     return $pdo;
+}
+
+// ---- session identity ----------------------------------------------------
+// Only the most recently logged-in browser for an account stays valid: each
+// login/registration overwrites session_token (issue_session_token), and
+// every authenticated request checks the PHP session's copy against it
+// (session_user) — an older session's copy silently stops matching instead
+// of being tracked/revoked individually.
+function issue_session_token(PDO $pdo, int $uid): string {
+    $token = bin2hex(random_bytes(32));
+    $pdo->prepare('UPDATE users SET session_token = ? WHERE id = ?')->execute([$token, $uid]);
+    $_SESSION['session_token'] = $token;
+    return $token;
+}
+
+// Returns the current session's user row if it's still the account's live
+// session, or null (clearing the session as a side effect) otherwise. Both
+// sides must be non-empty — a blank token never matches another blank one —
+// so accounts that predate this column, or a session from before this
+// column existed, fail closed and have to log in again rather than being
+// silently treated as still valid.
+function session_user(PDO $pdo): ?array {
+    if (empty($_SESSION['uid'])) return null;
+    $stmt = $pdo->prepare('SELECT * FROM users WHERE id = ?');
+    $stmt->execute([(int) $_SESSION['uid']]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $dbToken = (string) ($user['session_token'] ?? '');
+    $sessToken = (string) ($_SESSION['session_token'] ?? '');
+    if (!$user || $dbToken === '' || $sessToken === '' || !hash_equals($dbToken, $sessToken)) {
+        $_SESSION = [];
+        session_destroy();
+        return null;
+    }
+    return $user;
+}
+
+// Same, but ends the request with 401 instead of returning null — for
+// endpoints that only make sense while logged in.
+function require_session(PDO $pdo): array {
+    $user = session_user($pdo);
+    if ($user === null) {
+        json_out(['error' => 'Logged in elsewhere, or not logged in.', 'code' => 'session_invalid'], 401);
+    }
+    return $user;
 }
 
 // ---- per-IP login abuse protection --------------------------------------
@@ -163,6 +219,16 @@ const MAX_REQ_PER_SEC = 5;
 const CHEAT_PENALTY_JUMP_COUNT = 0;
 const CHEAT_ANNOUNCE_COOLDOWN = 300; // only re-announce a repeat offender every 5 minutes
 
+// A counted jump must present a nonce from /api/jump-start.php that's at
+// least this old (the fastest a real crouch+flight can possibly resolve —
+// crouch alone is a fixed 300ms, flight always adds more) — this is what
+// stops a bare POST to jump.php, with no browser and no animation, from
+// ever counting. The upper bound just expires a started-but-abandoned
+// attempt (tab closed mid-flight, etc.) rather than leaving it redeemable
+// indefinitely.
+const JUMP_ATTEMPT_MIN_SECONDS = 0.4;
+const JUMP_ATTEMPT_MAX_SECONDS = 8.0;
+
 // Bumps the user's request counter and returns true if they've just gone
 // over the limit. Callers should stop and penalize on a true return instead
 // of doing their normal work for this request.
@@ -186,6 +252,23 @@ function request_rate_exceeded(PDO $pdo, int $uid): bool {
         ->execute([$windowStart, $count, $uid]);
 
     return $count > MAX_REQ_PER_SEC;
+}
+
+// Zeroes the account's jump_count and — at most once every
+// CHEAT_ANNOUNCE_COOLDOWN seconds per account, so one offender can't spam
+// the chat — posts a public "caught cheating" message. Called from
+// jump.php wherever it detects a jump that couldn't have come from
+// actually playing (burst rate, or a missing/expired attempt nonce).
+function flag_cheating(PDO $pdo, int $uid, string $username): void {
+    $pdo->prepare('UPDATE users SET jump_count = ? WHERE id = ?')->execute([CHEAT_PENALTY_JUMP_COUNT, $uid]);
+
+    $stmt = $pdo->prepare('SELECT last_cheat_flag_at FROM users WHERE id = ?');
+    $stmt->execute([$uid]);
+    $now = time();
+    if ($now - (int) $stmt->fetchColumn() >= CHEAT_ANNOUNCE_COOLDOWN) {
+        $pdo->prepare('UPDATE users SET last_cheat_flag_at = ? WHERE id = ?')->execute([$now, $uid]);
+        post_system_message($pdo, "{$username} got caught cheating and lost everything!", 'cheat');
+    }
 }
 
 function ensure_upgrades_table(PDO $pdo): void {
@@ -222,6 +305,16 @@ function ensure_chat_table(PDO $pdo): void {
 function post_system_message(PDO $pdo, string $text, string $kind = 'system'): void {
     $pdo->prepare('INSERT INTO chat_messages (username, message, kind, created_at) VALUES (?, ?, ?, ?)')
         ->execute(['', $text, $kind, time()]);
+}
+
+// Chat only ever grows (no message is ever deleted otherwise), so every
+// post has a small random chance to trim it back down — cheaper than a
+// COUNT(*) on every single message, and keeps the table from growing
+// forever on an otherwise-idle site.
+const CHAT_HISTORY_KEEP = 2000;
+function maybe_prune_chat(PDO $pdo): void {
+    if (random_int(1, 50) !== 1) return;
+    $pdo->exec('DELETE FROM chat_messages WHERE id <= (SELECT MAX(id) FROM chat_messages) - ' . CHAT_HISTORY_KEEP);
 }
 
 function valid_username(string $u): bool {

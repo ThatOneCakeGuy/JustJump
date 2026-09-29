@@ -33,9 +33,8 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'GET') {
 
 require_method('POST');
 
-if (empty($_SESSION['uid'])) {
-    json_out(['error' => 'not logged in'], 401);
-}
+$user = require_session($pdo);
+$uid = (int) $user['id'];
 
 $in = json_in();
 $message = trim((string) ($in['message'] ?? ''));
@@ -44,21 +43,14 @@ if ($message === '' || mb_strlen($message) > 200) {
     json_out(['error' => 'Message must be 1-200 characters.'], 400);
 }
 
-$stmt = $pdo->prepare('SELECT username, last_chat_at FROM users WHERE id = ?');
-$stmt->execute([$_SESSION['uid']]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if (!$user) {
-    json_out(['error' => 'not logged in'], 401);
-}
-
 $now = time();
 if ($now - (int) $user['last_chat_at'] < 2) {
     json_out(['error' => 'Slow down a bit.'], 429);
 }
 
-$pdo->prepare('UPDATE users SET last_chat_at = ? WHERE id = ?')->execute([$now, $_SESSION['uid']]);
+$pdo->prepare('UPDATE users SET last_chat_at = ? WHERE id = ?')->execute([$now, $uid]);
 $pdo->prepare('INSERT INTO chat_messages (username, message, kind, created_at) VALUES (?, ?, ?, ?)')
     ->execute([$user['username'], $message, 'user', $now]);
+maybe_prune_chat($pdo);
 
 json_out(['ok' => true]);

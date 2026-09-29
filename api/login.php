@@ -52,6 +52,10 @@ $pdo->prepare('UPDATE users SET failed_attempts = 0, locked_until = 0 WHERE id =
 session_regenerate_id(true);
 $_SESSION['uid'] = (int) $user['id'];
 $_SESSION['username'] = $user['username'];
+// Overwrites the account's session_token, so any other browser already
+// logged in as this user fails its next session_user() check and is
+// logged out — only the most recent login stays valid.
+issue_session_token($pdo, (int) $user['id']);
 
 json_out([
     'ok' => true,

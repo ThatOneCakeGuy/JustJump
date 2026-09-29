@@ -27,8 +27,10 @@ $hash = password_hash($pin, PASSWORD_DEFAULT);
 $stmt = $pdo->prepare('INSERT INTO users (username, pin_hash, created_at) VALUES (?, ?, ?)');
 $stmt->execute([$username, $hash, time()]);
 
+$uid = (int) $pdo->lastInsertId();
 session_regenerate_id(true);
-$_SESSION['uid'] = (int) $pdo->lastInsertId();
+$_SESSION['uid'] = $uid;
 $_SESSION['username'] = $username;
+issue_session_token($pdo, $uid);
 
 json_out(['ok' => true, 'username' => $username, 'jumpCount' => 0, 'upgrades' => []]);
