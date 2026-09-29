@@ -1343,7 +1343,7 @@
     }
   }
   pollLeaderboardBox();
-  setInterval(pollLeaderboardBox, 6000);
+  setInterval(() => { if (!document.hidden) pollLeaderboardBox(); }, 6000);
 
   // ---- sidebar: chat, polled for new messages ----------------------------
   let chatLastId = 0;
@@ -1372,7 +1372,14 @@
     if (ok && data.messages) data.messages.forEach(renderChatMessage);
   }
   pollChat();
-  setInterval(pollChat, 2500);
+  setInterval(() => { if (!document.hidden) pollChat(); }, 2500);
+
+  // Both polls skip their network request while the tab's backgrounded
+  // (above) — catch back up immediately on return instead of waiting out
+  // whatever's left of the current interval.
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) { pollLeaderboardBox(); pollChat(); }
+  });
 
   chatForm.addEventListener('submit', async (e) => {
     e.preventDefault();
