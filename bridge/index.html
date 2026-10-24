@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jump Spots — random bridges from around the world</title>
+  <meta name="description" content="A random bridge, picture and facts included, every time you load the page. Powered by the open bridge-api.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+  <header class="site-head">
+    <h1>Jump Spots</h1>
+    <p class="tagline">One random bridge at a time, straight from Wikipedia.</p>
+  </header>
+
+  <main>
+    <section id="card" class="card" aria-live="polite">
+      <div id="photoWrap" class="photo-wrap">
+        <img id="photo" alt="" width="1920" height="1280">
+        <p id="credit" class="credit" hidden></p>
+      </div>
+
+      <div class="details">
+        <h2 id="name">Loading a bridge&hellip;</h2>
+        <p id="location" class="location"></p>
+
+        <ul id="facts" class="facts"></ul>
+
+        <p id="wikiLink" class="wiki-link"></p>
+      </div>
+
+      <div id="fromYou" class="from-you" hidden>
+        <div class="from-you-head">
+          <p id="youAre" class="you-are"></p>
+          <button id="exactLocation" type="button" class="link-button">Use my exact location</button>
+        </div>
+        <iframe id="map" class="map" title="Route from your location to this bridge"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <p id="errorMsg" class="error" role="alert" hidden></p>
+
+    <button id="newJump" type="button">New Jump Location</button>
+  </main>
+
+  <footer class="site-foot">
+    <p>Bridge facts and photos come from <a href="https://en.wikipedia.org" target="_blank" rel="noopener">Wikipedia</a>
+       and <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a>,
+       served through the <a href="api/">bridge-api</a>.</p>
+  </footer>
+
+  <!-- ?v= busts the 30-day immutable cache nginx sets on .js/.css — bump it whenever these change. -->
+  <script src="app.js?v=2"></script>
+</body>
+</html>

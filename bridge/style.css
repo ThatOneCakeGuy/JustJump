@@ -1,0 +1,226 @@
+:root {
+  --sky-a: #7fc8ff;
+  --sky-b: #e8f7ff;
+  --water: #1e6fa8;
+  --water-deep: #155580;
+  --board: #8a5a2b;
+  --ink: #14202b;
+  --panel: rgba(255, 255, 255, .88);
+  --panel-border: rgba(20, 32, 43, .08);
+  --muted: #4b5c68;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sky-a: #0b2540;
+    --sky-b: #173a5e;
+    --water: #0c3a5c;
+    --water-deep: #06253c;
+    --board: #6b4423;
+    --ink: #eef4f9;
+    --panel: rgba(12, 24, 36, .82);
+    --panel-border: rgba(255, 255, 255, .08);
+    --muted: #9fb3c2;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(var(--sky-a), var(--sky-b));
+  background-attachment: fixed;
+}
+
+.site-head {
+  text-align: center;
+  padding: 2.5rem 1rem 1rem;
+}
+
+.site-head h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: -0.02em;
+}
+
+.tagline {
+  margin: .4rem 0 0;
+  color: var(--muted);
+}
+
+main {
+  width: 100%;
+  max-width: 720px;
+  padding: 0 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.card {
+  width: 100%;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 16px;
+  overflow: hidden;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 12px 30px rgba(6, 30, 50, .18);
+}
+
+.photo-wrap {
+  position: relative;
+  background: color-mix(in srgb, var(--water) 25%, transparent);
+  min-height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-wrap img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 60vh;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+
+.photo-wrap img.loaded { opacity: 1; }
+
+.credit {
+  position: absolute;
+  right: .5rem;
+  bottom: .4rem;
+  margin: 0;
+  padding: .15rem .5rem;
+  font-size: .7rem;
+  color: #fff;
+  background: rgba(0, 0, 0, .45);
+  border-radius: 999px;
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.details { padding: 1.25rem 1.5rem 1.5rem; }
+
+.details h2 {
+  margin: 0 0 .15rem;
+  font-size: 1.5rem;
+}
+
+.location {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.facts {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+  line-height: 1.5;
+}
+
+.wiki-link { margin: 1rem 0 0; }
+
+.wiki-link a, .site-foot a {
+  color: var(--water);
+}
+
+@media (prefers-color-scheme: dark) {
+  .wiki-link a, .site-foot a { color: #8fd0ff; }
+}
+
+.from-you {
+  padding: 0 1.5rem 1.5rem;
+}
+
+.from-you-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .25rem 1rem;
+  margin-bottom: .6rem;
+}
+
+.you-are {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.link-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--water);
+  font: inherit;
+  font-size: .9rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.link-button:disabled { opacity: .6; cursor: default; }
+
+@media (prefers-color-scheme: dark) {
+  .link-button { color: #8fd0ff; }
+}
+
+.map {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  max-height: 420px;
+  border: 0;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--water) 15%, transparent);
+}
+
+#newJump {
+  padding: .85rem 1.75rem;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(var(--water), var(--water-deep));
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(6, 30, 50, .25);
+  transition: transform .1s ease, box-shadow .1s ease;
+}
+
+#newJump:hover { box-shadow: 0 10px 22px rgba(6, 30, 50, .3); }
+#newJump:active { transform: translateY(1px); }
+#newJump:disabled { opacity: .6; cursor: default; }
+
+.error {
+  margin: 0;
+  padding: .75rem 1rem;
+  border-radius: 10px;
+  background: color-mix(in srgb, #c8102e 15%, transparent);
+  color: var(--ink);
+  text-align: center;
+}
+
+.site-foot {
+  margin-top: auto;
+  padding: 1.5rem 1rem 2rem;
+  text-align: center;
+  font-size: .8rem;
+  color: var(--muted);
+  max-width: 720px;
+}

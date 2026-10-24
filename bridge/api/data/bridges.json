@@ -1,0 +1,1172 @@
+[
+    {
+        "id": "golden-gate-bridge",
+        "name": "Golden Gate Bridge",
+        "location": "San Francisco, California",
+        "country": "United States",
+        "coordinates": {
+            "lat": 37.81972222,
+            "lon": -122.47861111
+        },
+        "facts": [
+            "The Golden Gate Bridge is a suspension bridge spanning the Golden Gate, the one-mile-wide (1.6 km) strait connecting San Francisco Bay and the Pacific Ocean in California, United States.",
+            "The structure links San Francisco—the northern tip of the San Francisco Peninsula—to Marin County, carrying both U.S.",
+            "Route 101 and California State Route 1 across the strait.",
+            "It also carries pedestrian and bicycle traffic, and is designated as part of U.S.",
+            "Bicycle Route 95."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Golden_Gate_Bridge_as_seen_from_Battery_East.jpg/1920px-Golden_Gate_Bridge_as_seen_from_Battery_East.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1000,
+            "attribution": "Frank Schulenburg — CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Golden_Gate_Bridge_as_seen_from_Battery_East.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Golden_Gate_Bridge"
+    },
+    {
+        "id": "brooklyn-bridge",
+        "name": "Brooklyn Bridge",
+        "location": "New York City, New York",
+        "country": "United States",
+        "coordinates": {
+            "lat": 40.7057,
+            "lon": -73.9964
+        },
+        "facts": [
+            "The Brooklyn Bridge is a cable-stayed suspension bridge in New York City, spanning the East River between the boroughs of Manhattan and Brooklyn.",
+            "Opened on May 24, 1883, the Brooklyn Bridge was the first fixed crossing of the East River.",
+            "It was also the longest suspension bridge in the world when opened, with a main span of 1,595.5 feet (486.3 m) and a deck 127 ft (38.7 m) above mean high water.",
+            "The span was originally called the New York and Brooklyn Bridge or the East River Bridge but was officially renamed the Brooklyn Bridge in 1915.",
+            "Proposals for a bridge connecting Manhattan and Brooklyn were first made in the early 19th century; these plans evolved into what is now the Brooklyn Bridge, designed by John A."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/Brooklyn_Bridge_and_the_Lower_Manhattan_skyline_from_Pebble_Beach%2C_New_York.jpg/1920px-Brooklyn_Bridge_and_the_Lower_Manhattan_skyline_from_Pebble_Beach%2C_New_York.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 533,
+            "attribution": "Christian David — CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Brooklyn_Bridge_and_the_Lower_Manhattan_skyline_from_Pebble_Beach,_New_York.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Brooklyn_Bridge"
+    },
+    {
+        "id": "tower-bridge",
+        "name": "Tower Bridge",
+        "location": "London",
+        "country": "United Kingdom",
+        "coordinates": {
+            "lat": 51.5056,
+            "lon": -0.0753
+        },
+        "facts": [
+            "Tower Bridge is a Grade I listed combined bascule, suspension, and, until 1960, cantilever bridge in London, built between 1886 and 1894, designed by Horace Jones and engineered by John Wolfe Barry with the help of Henry Marc Brunel.",
+            "It crosses the River Thames close to the Tower of London and is one of five London bridges owned and maintained by the City Bridge Foundation, a charitable trust founded in 1282.",
+            "The bridge was constructed to connect the 39% of London's population that lived east of London Bridge, equivalent to the populations of \"Manchester on the one side, and Liverpool on the other\", while allowing shipping to access the Pool of London between the Tower of London and London Bridge.",
+            "The bridge was opened by Edward, Prince of Wales, and Alexandra, Princess of Wales, on 30 June 1894.",
+            "The bridge is 940 feet (290 m) in length including the abutments and consists of two 213-foot (65 m) bridge towers connected at the upper level by two horizontal walkways, and a central pair of bascules that can open to allow shipping."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Tower_Bridge_at_Dawn.jpg/1920px-Tower_Bridge_at_Dawn.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1067,
+            "attribution": "Fuzzypiggy — CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tower_Bridge_at_Dawn.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Tower_Bridge"
+    },
+    {
+        "id": "sydney-harbour-bridge",
+        "name": "Sydney Harbour Bridge",
+        "location": "Sydney",
+        "country": "Australia",
+        "coordinates": {
+            "lat": -33.85222222,
+            "lon": 151.21055556
+        },
+        "facts": [
+            "The Sydney Harbour Bridge is a steel through arch bridge in Sydney, New South Wales, Australia, spanning Sydney Harbour from the central business district (CBD) to the North Shore.",
+            "The view of the bridge, the harbour, and the nearby Sydney Opera House is widely regarded as an iconic image of Sydney, and of Australia itself.",
+            "Nicknamed \"the Coathanger\" because of its arch-based design, the bridge carries rail, vehicular, bicycle and pedestrian traffic.",
+            "Under the direction of John Bradfield of the New South Wales Department of Public Works, the bridge was designed and built by British firm Dorman Long of Middlesbrough, and opened in 1932.",
+            "The bridge's general design, which Bradfield tasked the NSW Department of Public Works with producing, was a rough copy of the Hell Gate Bridge in New York City."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/55/Sydney_Harbour_Bridge-16_October_2025.jpg/1920px-Sydney_Harbour_Bridge-16_October_2025.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 900,
+            "attribution": "Servite et contribuere — CC0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sydney_Harbour_Bridge-16_October_2025.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Sydney_Harbour_Bridge"
+    },
+    {
+        "id": "akashi-kaikyo-bridge",
+        "name": "Akashi Kaikyō Bridge",
+        "location": "Kobe–Awaji",
+        "country": "Japan",
+        "coordinates": {
+            "lat": 34.6162,
+            "lon": 135.0205
+        },
+        "facts": [
+            "The Akashi Kaikyo Bridge (Japanese: 明石海峡大橋, Hepburn: Akashi Kaikyō Ōhashi) is a suspension bridge that links the city of Kobe on the Japanese island of Honshu and Iwaya, Awaji on Awaji Island.",
+            "It is part of the Kobe-Awaji-Naruto Expressway, and crosses the busy and turbulent Akashi Strait (Akashi Kaikyō in Japanese).",
+            "It was completed in 1998, and at the time, was the longest central span of any suspension bridge in the world, at 1,991 metres (6,532 ft).",
+            "Currently, it is the second-longest, behind the 1915 Çanakkale Bridge in Turkey that was opened in March 2022.",
+            "The Akashi Kaikyo Bridge is one of the key links of the Honshū–Shikoku Bridge Project, which created three routes across the Seto Inland Sea."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/%E6%98%8E%E7%9F%B3%E6%B5%B7%E5%B3%A1%E5%A4%A7%E6%A9%8B_-_panoramio_%281%29_%28cropped%29.jpg/1920px-%E6%98%8E%E7%9F%B3%E6%B5%B7%E5%B3%A1%E5%A4%A7%E6%A9%8B_-_panoramio_%281%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1201,
+            "attribution": "clear_and_sunny — CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:%E6%98%8E%E7%9F%B3%E6%B5%B7%E5%B3%A1%E5%A4%A7%E6%A9%8B_-_panoramio_(1)_(cropped).jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Akashi_Kaikyo_Bridge"
+    },
+    {
+        "id": "millau-viaduct",
+        "name": "Millau Viaduct",
+        "location": "Millau",
+        "country": "France",
+        "coordinates": {
+            "lat": 44.07944444,
+            "lon": 3.02222222
+        },
+        "facts": [
+            "The Millau Viaduct (French: Viaduc de Millau [vja.dyk də mi.jo]) is a multispan cable-stayed bridge completed in 2004 across the gorge valley of the Tarn near (west of) Millau in the Aveyron department in the Occitanie Region, in Southern France.",
+            "The design team was led by engineer Michel Virlogeux and English architect Norman Foster.",
+            "It was the tallest bridge in the world for over two decades (until late 2025), with a structural height of 343 metres (1,125 ft).",
+            "The Millau Viaduct is part of the A75–A71 autoroute axis from Paris to Béziers and Montpellier.",
+            "The cost of construction was approximately €394 million (£345 million)."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/en/thumb/a/a6/ViaducdeMillau.jpg/1920px-ViaducdeMillau.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1067,
+            "attribution": "commons:User:Mike Switzerland — CC-BY-SA-2.5",
+            "sourceUrl": "https://en.wikipedia.org/wiki/File:ViaducdeMillau.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Millau_Viaduct"
+    },
+    {
+        "id": "ponte-vecchio",
+        "name": "Ponte Vecchio",
+        "location": "Florence",
+        "country": "Italy",
+        "coordinates": {
+            "lat": 43.76799,
+            "lon": 11.25316
+        },
+        "facts": [
+            "The Ponte Vecchio (Italian pronunciation: [ˈponte ˈvɛkkjo]; \"Old Bridge\") is a medieval stone closed-spandrel segmental arch bridge over the Arno, in Florence, Italy.",
+            "The only bridge in Florence spared from destruction during World War II, it is noted for the shops built along it; building shops on such bridges was once a common practice.",
+            "Butchers, tanners, and farmers initially occupied the shops; the present tenants are jewellers, art dealers, and souvenir sellers.",
+            "The Ponte Vecchio's two neighbouring bridges are the Ponte Santa Trinita and the Ponte alle Grazie.",
+            "The bridge connects Via Por Santa Maria (Lungarno degli Acciaiuoli and Lungarno degli Archibusieri) to Via de' Guicciardini (Borgo San Jacopo and Via de' Bardi)."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/Ponte_Vecchio_from_Ponte_alle_Grazie.jpg/1920px-Ponte_Vecchio_from_Ponte_alle_Grazie.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 891,
+            "attribution": "Ingo Mehling — CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ponte_Vecchio_from_Ponte_alle_Grazie.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Ponte_Vecchio"
+    },
+    {
+        "id": "rialto-bridge",
+        "name": "Rialto Bridge",
+        "location": "Venice",
+        "country": "Italy",
+        "coordinates": {
+            "lat": 45.438,
+            "lon": 12.336
+        },
+        "facts": [
+            "The Rialto Bridge (Italian: Ponte di Rialto; Venetian: Ponte de Rialto) is the oldest of the four bridges spanning the Grand Canal in Venice, Italy.",
+            "Connecting the sestieri (districts) of San Marco and San Polo, it has been rebuilt several times since its first construction as a pontoon bridge in 1173, and is now a significant tourist attraction in the city.",
+            "The present stone bridge is a single span designed by Antonio da Ponte.",
+            "Construction began in 1588 and was completed in 1591.",
+            "It is similar to the wooden bridge it succeeded."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Rialto_2025_4.jpg/1920px-Rialto_2025_4.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1067,
+            "attribution": "kallerna — CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rialto_2025_4.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Rialto_Bridge"
+    },
+    {
+        "id": "charles-bridge",
+        "name": "Charles Bridge",
+        "location": "Prague",
+        "country": "Czech Republic",
+        "coordinates": {
+            "lat": 50.08638889,
+            "lon": 14.41194444
+        },
+        "facts": [
+            "Charles Bridge (Czech: Karlův most [ˈkarluːf ˈmost] , German: Karlsbrücke [kaʁlsˌbʁʏkə] ) is a medieval stone arch bridge that crosses the Vltava river in Prague, Czech Republic.",
+            "Its construction started in 1357 under the auspices of King Charles IV, and finished in the early 15th century.",
+            "The bridge replaced the old Judith Bridge built 1158–1172 that had been severely damaged by a flood in 1342.",
+            "This new bridge was originally called Stone Bridge (Kamenný most) or Prague Bridge (Pražský most), but has been referred to as \"Charles Bridge\" since 1870.",
+            "As the only means of crossing the river Vltava until 1841, Charles Bridge was the most important connection between Prague Castle and the city's Old Town and adjacent areas."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Prague_07-2016_view_from_Lesser_Town_Tower_of_Charles_Bridge_img3.jpg/1920px-Prague_07-2016_view_from_Lesser_Town_Tower_of_Charles_Bridge_img3.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1067,
+            "attribution": "A.Savin — FAL",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Prague_07-2016_view_from_Lesser_Town_Tower_of_Charles_Bridge_img3.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Charles_Bridge"
+    },
+    {
+        "id": "confederation-bridge",
+        "name": "Confederation Bridge",
+        "location": "Northumberland Strait",
+        "country": "Canada",
+        "coordinates": {
+            "lat": 46.21527778,
+            "lon": -63.74583333
+        },
+        "facts": [
+            "The Confederation Bridge (French: Pont de la Confédération) is a box girder bridge carrying the Trans-Canada Highway across the Abegweit Passage of the Northumberland Strait, linking the province of Prince Edward Island with the mainland province of New Brunswick.",
+            "Opened on May 31, 1997, the 12.9-kilometre (42,000 ft; 8.0 mi) bridge is Canada's longest bridge and the world's longest bridge over ice-covered water.",
+            "The bridge was designed by French engineer Jean M.",
+            "Muller who was a specialist of multiple span match-casting bridges.",
+            "Construction took place from 1 November 1993 until May 1997 and cost C$1.3 billion."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Confederation_Bridge_aerial_view_%28from_PEI_side%29.jpg/1920px-Confederation_Bridge_aerial_view_%28from_PEI_side%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 960,
+            "attribution": "Quintin Soloviev — CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Confederation_Bridge_aerial_view_(from_PEI_side).jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Confederation_Bridge"
+    },
+    {
+        "id": "oresund-bridge",
+        "name": "Øresund Bridge",
+        "location": "Øresund Strait",
+        "country": "Denmark/Sweden",
+        "coordinates": {
+            "lat": 55.57055556,
+            "lon": 12.84944444
+        },
+        "facts": [
+            "The Øresund Bridge or Öresund Bridge is a combined railway and motorway cable-stayed bridge across the Øresund strait between Denmark and Sweden.",
+            "It is the fourth longest bridge in Europe and combines both roadway and railway in a single structure, consisting of international European route E20 and the Øresund Line respectively.",
+            "It runs nearly 8 kilometres (5 miles) from the Swedish coast to the artificial island of Peberholm in the middle of the strait.",
+            "The Øresund Link is completed by the four-kilometre (2+1⁄2-mile) Øresund Tunnel from Peberholm to the Danish island of Amager.",
+            "Construction began in 1995 and it opened to traffic on 1 July 2000."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/%C3%98resund_Bridge_from_the_air_in_September_2015.jpg/1920px-%C3%98resund_Bridge_from_the_air_in_September_2015.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1200,
+            "attribution": "Nick-D — CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:%C3%98resund_Bridge_from_the_air_in_September_2015.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/%C3%98resund_Bridge"
+    },
+    {
+        "id": "hangzhou-bay-bridge",
+        "name": "Hangzhou Bay Bridge",
+        "location": "Hangzhou Bay",
+        "country": "China",
+        "coordinates": {
+            "lat": 30.45,
+            "lon": 121.13333333
+        },
+        "facts": [
+            "Hangzhou Bay Bridge (simplified Chinese: 杭州湾大桥; traditional Chinese: 杭州灣大橋; pinyin: Hángzhōu Wān Dàqiáo; Wu: Han-tseu-uae du-jiau) is a long 35.7 km (22.2 mi) highway bridge with two separate cable-stayed portions, built across the mouth of Hangzhou Bay in the eastern coastal region of China.",
+            "It connects the municipalities of Jiaxing and Ningbo in Zhejiang province.",
+            "Construction of the bridge was completed on June 14, 2007, and an opening ceremony was held on June 26, 2007.",
+            "The bridge was opened to public May 1, 2008, after a considerable period of testing and evaluation.",
+            "The bridge shortened the highway travel distance between Ningbo and Shanghai from 400 km (249 mi) to 180 km (112 mi) and reduced travel time from 4 to 2 hours."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/%E6%9D%AD%E5%B7%9E%E6%B9%BE%E5%A4%A7%E6%A1%A5%E4%B8%8A%E7%9A%84%E9%AB%98%E9%80%9F%E5%B2%9B%E5%BC%8F%E6%9C%8D%E5%8A%A1%E5%8C%BA.jpeg/1920px-%E6%9D%AD%E5%B7%9E%E6%B9%BE%E5%A4%A7%E6%A1%A5%E4%B8%8A%E7%9A%84%E9%AB%98%E9%80%9F%E5%B2%9B%E5%BC%8F%E6%9C%8D%E5%8A%A1%E5%8C%BA.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1066,
+            "attribution": "David290 — CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:%E6%9D%AD%E5%B7%9E%E6%B9%BE%E5%A4%A7%E6%A1%A5%E4%B8%8A%E7%9A%84%E9%AB%98%E9%80%9F%E5%B2%9B%E5%BC%8F%E6%9C%8D%E5%8A%A1%E5%8C%BA.jpeg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Hangzhou_Bay_Bridge"
+    },
+    {
+        "id": "danyang-kunshan-grand-bridge",
+        "name": "Danyang–Kunshan Grand Bridge",
+        "location": "Jiangsu",
+        "country": "China",
+        "coordinates": null,
+        "facts": [
+            "The Danyang–Kunshan Grand Bridge (simplified Chinese: 丹昆特大桥; traditional Chinese: 丹昆特大橋; pinyin: Dān-Kūn tèdà qiáo) is a 164.8-kilometre-long (102.4 mi) viaduct on the Beijing–Shanghai High-Speed Railway.",
+            "It is the longest bridge in the world since its designation by Guinness World Record in 2011."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/201603_Danyang-Kunshan_grand_bridge_%28wuxi%29_%28cropped%29.JPG/1920px-201603_Danyang-Kunshan_grand_bridge_%28wuxi%29_%28cropped%29.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 592,
+            "attribution": "MNXANL — CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:201603_Danyang-Kunshan_grand_bridge_(wuxi)_(cropped).JPG"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Danyang%E2%80%93Kunshan_Grand_Bridge"
+    },
+    {
+        "id": "vasco-da-gama-bridge",
+        "name": "Vasco da Gama Bridge",
+        "location": "Lisbon",
+        "country": "Portugal",
+        "coordinates": {
+            "lat": 38.762,
+            "lon": -9.043
+        },
+        "facts": [
+            "The Vasco da Gama Bridge (Portuguese: Ponte Vasco da Gama) is a cable-stayed bridge flanked by viaducts that spans the Tagus River in Parque das Nações in Lisbon, the capital of Portugal.",
+            "It is the second longest bridge in Europe, after the Crimean Bridge, and was the longest bridge for a while.",
+            "It is also the longest bridge in the European Union.",
+            "It was built to alleviate the congestion on Lisbon's 25 de Abril Bridge, and eliminate the need for traffic between the country's northern and southern regions to pass through the capital city.",
+            "Construction began in February 1995; the bridge was opened to traffic on 29 March 1998 in time for Expo 98, the World's Fair that celebrated the 500th anniversary of the discovery by Vasco da Gama of the sea route from Europe to India."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/Vasco_da_Gama_Bridge_aerial_view.jpg/1920px-Vasco_da_Gama_Bridge_aerial_view.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 799,
+            "attribution": "Till Niermann — CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vasco_da_Gama_Bridge_aerial_view.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Vasco_da_Gama_Bridge"
+    },
+    {
+        "id": "pont-du-gard",
+        "name": "Pont du Gard",
+        "location": "near Vers-Pont-du-Gard",
+        "country": "France",
+        "coordinates": {
+            "lat": 43.94722222,
+            "lon": 4.53555556
+        },
+        "facts": [
+            "The Pont du Gard is an ancient Roman aqueduct bridge built in the first century AD to carry water over 50 km (31 mi) to the Roman colony of Nemausus (Nîmes).",
+            "It crosses the river Gardon near the town of Vers-Pont-du-Gard in southern France.",
+            "The Pont du Gard is one of the best preserved  Roman aqueduct bridges.",
+            "It was added to UNESCO's list of World Heritage sites in 1985 because of its exceptional preservation, historical importance, and architectural ingenuity."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Pont_du_Gard_BLS.jpg/1920px-Pont_du_Gard_BLS.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 618,
+            "attribution": "Benh LIEU SONG (Flickr) — CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pont_du_Gard_BLS.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Pont_du_Gard"
+    },
+    {
+        "id": "stari-most",
+        "name": "Stari Most",
+        "location": "Mostar",
+        "country": "Bosnia and Herzegovina",
+        "coordinates": null,
+        "facts": [
+            "The Old Bridge (Serbo-Croatian: Stari most), also known as the Mostar Bridge, is a rebuilt 16th-century Ottoman bridge in the city of Mostar in Bosnia and Herzegovina.",
+            "It crosses the river Neretva and connects the two parts of the city, which is named after the bridge keepers (mostari) who guarded the Old Bridge during the Ottoman era.",
+            "Commissioned by Suleiman the Magnificent in 1557 and designed by Mimar Hayruddin, a student and apprentice of the architect Mimar Sinan, the Old Bridge is an exemplary piece of Balkan Islamic architecture.",
+            "During the Croat–Bosniak War, the Army of the Republic of Bosnia and Herzegovina (ARBiH) used the bridge as a military supply line, leading the Croatian Defence Council (HVO) to shell and destroy it on 9 November 1993.",
+            "Subsequently, the bridge was reconstructed, and it reopened on 23 July 2004."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Mostar_Old_Town_Panorama_2007.jpg/1920px-Mostar_Old_Town_Panorama_2007.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1071,
+            "attribution": "Ramirez — CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mostar_Old_Town_Panorama_2007.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Stari_Most"
+    },
+    {
+        "id": "chapel-bridge",
+        "name": "Chapel Bridge",
+        "location": "Lucerne",
+        "country": "Switzerland",
+        "coordinates": {
+            "lat": 47.05166667,
+            "lon": 8.3075
+        },
+        "facts": [
+            "The Kapellbrücke (from German 'Chapel Bridge') is a covered wooden footbridge spanning the river Reuss diagonally in the city of Lucerne in central Switzerland.",
+            "Named after the nearby St.",
+            "Peter's Chapel, the bridge is unique in containing a number of interior paintings dating back to the 17th century, although many of them were destroyed along with a larger part of the centuries-old bridge in a 1993 fire.",
+            "Subsequently restored, the Kapellbrücke is the oldest wooden covered bridge in Europe, as well as the world's oldest surviving truss bridge.",
+            "It serves as the city's symbol and as one of Switzerland's main tourist attractions."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/Kapellbruecke.JPG/1920px-Kapellbruecke.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1064,
+            "attribution": "Simon Koopmann — CC BY-SA 2.5",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kapellbruecke.JPG"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Kapellbr%C3%BCcke"
+    },
+    {
+        "id": "si-o-se-pol",
+        "name": "Si-o-se-pol",
+        "location": "Isfahan",
+        "country": "Iran",
+        "coordinates": {
+            "lat": 32.64487,
+            "lon": 51.66759
+        },
+        "facts": [
+            "The Allahverdi Khan Bridge (Persian: پل الله‌وردی خان), popularly known as Si-o-se-pol (Persian: سی‌وسه‌پل, lit. '[the] bridge of thirty-three [spans]'), is the largest of the eleven historical bridges on the Zayanderud, the largest river of the Iranian Plateau, in Isfahan, Iran.",
+            "The bridge was built in the early 17th century to serve as both a bridge and a dam."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/33_pol_esfahan.jpg/1920px-33_pol_esfahan.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1200,
+            "attribution": "Wikinewis1377q — CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:33_pol_esfahan.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Si-o-se-pol"
+    },
+    {
+        "id": "khaju-bridge",
+        "name": "Khaju Bridge",
+        "location": "Isfahan",
+        "country": "Iran",
+        "coordinates": {
+            "lat": 32.6367,
+            "lon": 51.6833
+        },
+        "facts": [
+            "The Khaju Bridge (Persian: پل خواجو, romanized: Pol-e Xāju) is a historic bridge on the Zayanderud, the largest river of the Iranian plateau, in Isfahan, Iran.",
+            "Serving as both a bridge and a weir, it links the Khaju quarter on the north bank with the Zoroastrian quarter across the Zayanderud.",
+            "It is located at the end of Kamal Ismail Street in Isfahan.",
+            "The bridge served a primary function as a building and a place for public meetings in the past.",
+            "It has been described as the city's finest bridge."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Khaju_Bridje_at_night.jpg/1920px-Khaju_Bridje_at_night.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1067,
+            "attribution": "Gire 3pich2005 with special thanks to Hossein Majidi — Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Khaju_Bridje_at_night.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Khaju_Bridge"
+    },
+    {
+        "id": "forth-bridge",
+        "name": "Forth Bridge",
+        "location": "Firth of Forth",
+        "country": "United Kingdom",
+        "coordinates": {
+            "lat": 56.0004,
+            "lon": -3.3886
+        },
+        "facts": [
+            "The Forth Bridge is a cantilever railway bridge across the Firth of Forth in the east of Scotland, 9 miles (14 kilometres) west of central Edinburgh.",
+            "Completed in 1890, it is considered a symbol of Scotland (having been voted Scotland's greatest man-made wonder in 2016), and is a UNESCO World Heritage Site.",
+            "It was designed by English engineers Sir John Fowler and Sir Benjamin Baker.",
+            "It is sometimes referred to as the Forth Rail Bridge (to distinguish it from the adjacent Forth Road Bridge), although this is not its official name.",
+            "Construction of the bridge began in 1882 and it was opened on 4 March 1890 by the Duke of Rothesay, the future Edward VII."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Forth_Bridge_2022.jpg/1920px-Forth_Bridge_2022.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 825,
+            "attribution": "MrMasterKeyboard — CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Forth_Bridge_2022.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Forth_Bridge"
+    },
+    {
+        "id": "humber-bridge",
+        "name": "Humber Bridge",
+        "location": "Kingston upon Hull",
+        "country": "United Kingdom",
+        "coordinates": {
+            "lat": 53.7064,
+            "lon": -0.45
+        },
+        "facts": [
+            "The Humber Bridge is a 2.22-kilometre (2,430-yard; 7,300-foot; 1.38-mile) single-span road suspension bridge near Kingston upon Hull, East Riding of Yorkshire, England.",
+            "When it opened to traffic on 24 June 1981, it was the longest of its type in the world; the Akashi Kaikyō Bridge surpassed it in 1998, and it became the fourteenth-longest by 2025.",
+            "The bridge spans the Humber (an estuary formed by the rivers Trent and Ouse), between Barton-upon-Humber on the south bank and Hessle on the north bank, connecting the East Riding of Yorkshire with North Lincolnshire.",
+            "Both sides of the bridge were in the non-metropolitan county of Humberside until its dissolution in 1996.",
+            "The bridge can be seen for miles around, from as far as Patrington in the East Riding of Yorkshire, and from out to sea miles off the coast."
+        ],
+        "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Humber_Br%C3%A9ck_zu_Hull_w.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+            "width": 800,
+            "height": 441,
+            "attribution": "Original: Tonyharp at English Wikipedia\nModifications: Cornischong at Luxembourgish Wikipedia — CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Humber_Br%C3%A9ck_zu_Hull_w.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Humber_Bridge"
+    },
+    {
+        "id": "verrazzano-narrows-bridge",
+        "name": "Verrazzano-Narrows Bridge",
+        "location": "New York City, New York",
+        "country": "United States",
+        "coordinates": {
+            "lat": 40.60638889,
+            "lon": -74.04555556
+        },
+        "facts": [
+            "The Verrazzano–Narrows Bridge ( VERR-ə-ZAH-noh; also referred to as the Narrows Bridge, the Verrazzano Bridge, and simply the Verrazzano) is a suspension bridge connecting the boroughs of Staten Island and Brooklyn in New York City, New York, U.S.",
+            "It spans the Narrows, a body of water linking the relatively enclosed New York Harbor with Lower New York Bay and the Atlantic Ocean.",
+            "It is the only fixed crossing of the Narrows.",
+            "The double-deck bridge carries 13 lanes of Interstate 278: seven on the upper level and six on the lower level.",
+            "The span is named for Giovanni da Verrazzano, who in 1524 was the first European explorer to enter New York Harbor and the Hudson River."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/72/Verrazano_Bridge2.jpg/1920px-Verrazano_Bridge2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1436,
+            "attribution": "H.L.I.T. — Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Verrazano_Bridge2.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Verrazzano%E2%80%93Narrows_Bridge"
+    },
+    {
+        "id": "george-washington-bridge",
+        "name": "George Washington Bridge",
+        "location": "New York City, New York",
+        "country": "United States",
+        "coordinates": null,
+        "facts": [
+            "The George Washington Bridge is a double-decked suspension bridge spanning the Hudson River, connecting Fort Lee in Bergen County, New Jersey, with the Washington Heights neighborhood of Manhattan, New York City.",
+            "It is named after George Washington, a Founding Father of the United States and the country's first president.",
+            "The George Washington Bridge is the world's busiest motor vehicle bridge, carrying a traffic volume of over 101 million motor vehicles in 2025, and is the world's only suspension bridge with 14 vehicular lanes.",
+            "The George Washington Bridge measures 4,760 feet (1,450 m) long, and its main span is 3,500 feet (1,100 m) long.",
+            "It was the longest main bridge span in the world from its 1931 opening until the Golden Gate Bridge in San Francisco opened in 1937."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/GWBfromFortLeeHistoricPark.JPG/1920px-GWBfromFortLeeHistoricPark.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1200,
+            "attribution": "Hudconja — CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:GWBfromFortLeeHistoricPark.JPG"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/George_Washington_Bridge"
+    },
+    {
+        "id": "mackinac-bridge",
+        "name": "Mackinac Bridge",
+        "location": "Straits of Mackinac, Michigan",
+        "country": "United States",
+        "coordinates": {
+            "lat": 45.817059,
+            "lon": -84.727822
+        },
+        "facts": [
+            "The Mackinac Bridge ( MAK-ə-naw; also referred to as the Mighty Mac or Big Mac) is a suspension bridge that connects the Upper and Lower peninsulas of the U.S. state of Michigan.",
+            "It spans the Straits of Mackinac, a body of water connecting Lake Michigan and Lake Huron, two of the Great Lakes.",
+            "Opened in 1957, the 26,372-foot-long (4.995 mi; 8.038 km) bridge is the world's 32nd-longest main span and is the longest suspension bridge between anchorages in the Western Hemisphere.",
+            "The Mackinac Bridge is part of Interstate 75 (I-75) and carries the Lake Michigan and Huron components of the Great Lakes Circle Tour across the straits; it is also a segment of the U.S.",
+            "North Country National Scenic Trail."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Mackinac_Bridge_2022.jpg/1920px-Mackinac_Bridge_2022.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 900,
+            "attribution": "WMrapids — CC0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mackinac_Bridge_2022.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Mackinac_Bridge"
+    },
+    {
+        "id": "sunshine-skyway-bridge",
+        "name": "Sunshine Skyway Bridge",
+        "location": "Tampa Bay, Florida",
+        "country": "United States",
+        "coordinates": {
+            "lat": 27.625,
+            "lon": -82.65861111
+        },
+        "facts": [
+            "The Sunshine Skyway Bridge, officially referred to as the Bob Graham Sunshine Skyway Bridge, is a pair of long beam bridges with a central tall cable-stayed bridge.",
+            "It spans Lower Tampa Bay to connect Pinellas County (St.",
+            "Petersburg, Florida) to Manatee County (Terra Ceia, Florida).",
+            "The current Sunshine Skyway opened in 1987 and is the second bridge of that name on the site.",
+            "It was designed by the Figg & Muller Engineering Group and built by the American Bridge Company."
+        ],
+        "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/1/17/SunshineSkywayBridge-4SC_6643-15.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+            "width": 1000,
+            "height": 690,
+            "attribution": "Robert Neff — CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:SunshineSkywayBridge-4SC_6643-15.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Sunshine_Skyway_Bridge"
+    },
+    {
+        "id": "bixby-creek-bridge",
+        "name": "Bixby Creek Bridge",
+        "location": "Big Sur, California",
+        "country": "United States",
+        "coordinates": {
+            "lat": 36.37138889,
+            "lon": -121.90194444
+        },
+        "facts": [
+            "Bixby Bridge, also known as Bixby Creek Bridge, on the Big Sur coast of California, is one of the most photographed bridges in California due to its aesthetic design, \"graceful architecture and magnificent setting\".",
+            "It is a reinforced concrete open-spandrel arch bridge.",
+            "The bridge is 120 miles (190 km) south of San Francisco and 13 miles (21 km) south of Carmel in Monterey County on State Route 1.",
+            "Before the opening of the bridge in 1932, residents of the Big Sur area were virtually cut off during winter due to blockages on the often impassable Old Coast Road, which led 11 miles (18 km) inland.",
+            "The bridge was built under budget for $199,861 (equivalent to $3.73 million in 2024 dollars) and, at 360 feet (110 m), was the longest concrete arch span in the California State Highway System."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Bixby_Creek_Bridge%2C_California%2C_USA_-_May_2013.jpg/1920px-Bixby_Creek_Bridge%2C_California%2C_USA_-_May_2013.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 793,
+            "attribution": "Diliff — CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bixby_Creek_Bridge,_California,_USA_-_May_2013.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Bixby_Bridge"
+    },
+    {
+        "id": "royal-gorge-bridge",
+        "name": "Royal Gorge Bridge",
+        "location": "Cañon City, Colorado",
+        "country": "United States",
+        "coordinates": {
+            "lat": 38.46167,
+            "lon": -105.325
+        },
+        "facts": [
+            "The Royal Gorge Bridge is a tourist attraction in the United States near Cañon City, Colorado within Royal Gorge Bridge and Park, a 360-acre (150 ha) amusement park located along the edge of the Royal Gorge around both ends of the bridge.",
+            "The bridge crosses the gorge 955 feet (291 m) above the Arkansas River and held the record of highest bridge in the world from 1929 until 2001 when it was surpassed by the Liuguanghe Bridge in China.",
+            "The Royal Gorge Bridge maintained the title of the world's highest suspension bridge until the Beipan River Guanxing Highway Bridge was completed in 2003, also in China.",
+            "The bridge remains the highest bridge in the United States and was among the ten highest bridges in the world until 2012.",
+            "The main span of the bridge between the towers is 880 feet (268 m), the total length is 1,260 feet (384 m), the width is 18 feet (5.5 m) and the towers are 150 feet (46 m) high."
+        ],
+        "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Royal_Gorge_Bridge_%28looking_west%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+            "width": 1500,
+            "height": 1000,
+            "attribution": "Bkthomson — CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Royal_Gorge_Bridge_(looking_west).jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Royal_Gorge_Bridge"
+    },
+    {
+        "id": "hell-gate-bridge",
+        "name": "Hell Gate Bridge",
+        "location": "New York City, New York",
+        "country": "United States",
+        "coordinates": {
+            "lat": 40.7825,
+            "lon": -73.9219
+        },
+        "facts": [
+            "The Hell Gate Bridge (originally the New York Connecting Railroad Bridge) is a railroad bridge in New York City.",
+            "The bridge carries two tracks of Amtrak's Northeast Corridor and one freight track between Astoria, Queens, and Port Morris, Bronx, via Randalls and Wards Islands.",
+            "Its main span is a 1,017-foot (310 m) steel through arch across Hell Gate, a strait of the East River that separates Wards Island from Queens.",
+            "The bridge also includes several approach viaducts and two spans across smaller waterways; including these spans, the bridge is 17,000 feet (5,200 m) long.",
+            "It is one of the few rail connections from Long Island, of which Queens is part, to the continental United States."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6e/Hell_Gate_Bridge_%2860275p%29.jpg/1920px-Hell_Gate_Bridge_%2860275p%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 650,
+            "attribution": "Rhododendrites — CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hell_Gate_Bridge_(60275p).jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Hell_Gate_Bridge"
+    },
+    {
+        "id": "tsing-ma-bridge",
+        "name": "Tsing Ma Bridge",
+        "location": "Hong Kong",
+        "country": "China",
+        "coordinates": {
+            "lat": 22.35138889,
+            "lon": 114.07416667
+        },
+        "facts": [
+            "Tsing Ma Bridge is a bridge in Hong Kong that connects Tsing Yi and Ma Wan islands.",
+            "It is the world's 21st-longest span suspension bridge, and was the second longest at the time of its completion.",
+            "The bridge was named after the two islands it connects, namely Tsing Yi and Ma Wan.",
+            "It has two decks and carries both road and rail traffic, which also makes it the largest suspension bridge of this type.",
+            "The bridge has a main span of 1,377 metres (4,518 ft) and a height of 206 metres (676 ft)."
+        ],
+        "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Tsing_Ma_Bridge_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+            "width": 1024,
+            "height": 691,
+            "attribution": "mageba sa (wahrscheinlich Benutzer:Mageba) — GFDL",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tsing_Ma_Bridge_2.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Tsing_Ma_Bridge"
+    },
+    {
+        "id": "rainbow-bridge-tokyo",
+        "name": "Rainbow Bridge (Tokyo)",
+        "location": "Tokyo",
+        "country": "Japan",
+        "coordinates": {
+            "lat": 35.63638889,
+            "lon": 139.76361111
+        },
+        "facts": [
+            "The Rainbow Bridge (Japanese: レインボーブリッジ, Hepburn: Reinbō Burijji) is a suspension bridge crossing northern Tokyo Bay between Shibaura Pier and the Odaiba waterfront development in Minato, Tokyo, Japan.",
+            "Its official name is the Tokyo Port Bridge (東京港連絡橋, Tōkyō Kō Renrakukyō).",
+            "The English name \"Rainbow Bridge\" was chosen by public vote.",
+            "The bridge carries road, rail and pedestrian traffic on two decks and is a prominent element of the Odaiba waterfront skyline."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Rainbow_Bridge_%28Tokyo%29_at_night_8.jpg/1920px-Rainbow_Bridge_%28Tokyo%29_at_night_8.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1067,
+            "attribution": "Kakidai — CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rainbow_Bridge_(Tokyo)_at_night_8.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Rainbow_Bridge_(Tokyo)"
+    },
+    {
+        "id": "seto-ohashi-bridge",
+        "name": "Great Seto Bridge",
+        "location": "Seto Inland Sea",
+        "country": "Japan",
+        "coordinates": {
+            "lat": 34.39833333,
+            "lon": 133.81
+        },
+        "facts": [
+            "The Great Seto Bridge or Seto Ohashi Bridge (瀬戸大橋, Seto Ōhashi) is a series of double deck bridges connecting Okayama and Kagawa prefectures in Japan across a series of five small islands in the Seto Inland Sea.",
+            "Built over the period 1978–1988, it is one of the three routes of the Honshū–Shikoku Bridge Project connecting Honshū and Shikoku islands and the only one to carry rail traffic.",
+            "The total length is 13.1 kilometers (8.1 mi), and the longest span, the Minami Bisan-Seto Bridge, is 1.1 kilometers (3,600 ft).",
+            "The crossing takes about 20 minutes by car or train.",
+            "The ferry crossing before the bridge was built took about an hour."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/Seto-Ohashi_Bridge.jpg/1920px-Seto-Ohashi_Bridge.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 945,
+            "attribution": "Hideyuki KAMON from Takarazuka / 宝塚市, Hyogo / 兵庫県, Japan / 日本 — CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Seto-Ohashi_Bridge.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Great_Seto_Bridge"
+    },
+    {
+        "id": "storseisundet-bridge",
+        "name": "Storseisundet Bridge",
+        "location": "Atlantic Ocean Road",
+        "country": "Norway",
+        "coordinates": null,
+        "facts": [
+            "The Storseisundet Bridge (Norwegian: Storseisundbrua) is the longest of the eight bridges that make up the Atlanterhavsveien (\"The Atlantic Road\"), the road connection from the mainland Romsdal peninsula to the island of Averøya in Møre og Romsdal county, Norway.",
+            "The bridge sits on the border between Hustadvika Municipality and Averøy Municipality and passes through an archipelago as it links mainland Norway with the island of Averoy.",
+            "It is one of the country's official national tourist routes.",
+            "Storseisundet Bridge is a cantilever bridge that is 260 metres (850 ft) long and with a maximum clearance to the sea of 23 metres (75 ft).",
+            "The length including the embankments on both ends, is around 750 metres (2,460 ft)."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Storseisundet_bridge.jpg/1920px-Storseisundet_bridge.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1200,
+            "attribution": "Iwoelbern — Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Storseisundet_bridge.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Storseisundet_Bridge"
+    },
+    {
+        "id": "puente-nuevo",
+        "name": "Puente Nuevo",
+        "location": "Ronda",
+        "country": "Spain",
+        "coordinates": {
+            "lat": 36.74074722,
+            "lon": -5.16590278
+        },
+        "facts": [
+            "The Puente Nuevo (Spanish pronunciation: [ˈpwente ˈnweβo], \"New Bridge\"), completed in 1793, is the newest and largest of three bridges that span the 120-metre-deep (390 ft) chasm, the El Tajo Gorge, that carries the Guadalevín River and divides the city of Ronda, in southern Spain.",
+            "The architect was José Martin de Aldehuela and the chief builder was Juan Antonio Díaz Machuca.",
+            "The construction of the newest bridge (the one standing as of 2024) was started in 1759 and took 34 years.",
+            "There is a chamber above the central arch that was used for a variety of purposes, including as a prison.",
+            "During the 1936–1939 civil war both sides allegedly used the prison as a torture chamber for captured opponents, killing some by throwing them from the windows to the rocks at the bottom of the El Tajo gorge."
+        ],
+        "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Punte_Nuevo_Bridge%2C_Ronda_-_Spain.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+            "width": 1919,
+            "height": 2558,
+            "attribution": "Mark Gilbert — CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Punte_Nuevo_Bridge,_Ronda_-_Spain.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Puente_Nuevo"
+    },
+    {
+        "id": "puente-de-la-mujer",
+        "name": "Puente de la Mujer",
+        "location": "Buenos Aires",
+        "country": "Argentina",
+        "coordinates": {
+            "lat": -34.607939,
+            "lon": -58.364911
+        },
+        "facts": [
+            "The Puente de la Mujer (Spanish for \"Woman's Bridge\") is a rotating footbridge for Dock 3 of the Puerto Madero commercial district of Buenos Aires, Argentina.",
+            "It is of the cantilever spar cable-stayed bridge type and is also a swing bridge, but somewhat unusual in its asymmetrical arrangement.",
+            "It has a single mast with cables suspending a portion of the bridge which rotates 90 degrees in order to allow water traffic to pass.",
+            "When it swings to allow watercraft passage, the far end comes to a resting point on a stabilizing pylon."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Puente_de_la_Mujer%2C_Puerto_Madero%2C_Buenos_Aires%2C_Argentina%2C_29th._Dec._2010_-_Flickr_-_PhillipC_%281%29.jpg/1920px-Puente_de_la_Mujer%2C_Puerto_Madero%2C_Buenos_Aires%2C_Argentina%2C_29th._Dec._2010_-_Flickr_-_PhillipC_%281%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1063,
+            "attribution": "Phillip Capper from Wellington, New Zealand — CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Puente_de_la_Mujer,_Puerto_Madero,_Buenos_Aires,_Argentina,_29th._Dec._2010_-_Flickr_-_PhillipC_(1).jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Puente_de_la_Mujer"
+    },
+    {
+        "id": "juscelino-kubitschek-bridge",
+        "name": "Juscelino Kubitschek Bridge",
+        "location": "Brasília",
+        "country": "Brazil",
+        "coordinates": {
+            "lat": -15.82361111,
+            "lon": -47.82944444
+        },
+        "facts": [
+            "Juscelino Kubitschek Bridge (Portuguese: Ponte Juscelino Kubitschek), commonly called Ponte JK (English: JK Bridge), is a steel and concrete arch bridge across Lake Paranoá in Brasília, Brazil.",
+            "It connects the eastern shore of the lake – where Lago Sul, Paranoá and Brasília International Airport are located – to Brasília's city center, via the Monumental Axis.",
+            "Opened to traffic on December 15, 2002, its distinctive silhouette quickly became a Brasília landmark.",
+            "The bridge is named after President Juscelino Kubitschek, who served from 1956 to 1961 and is generally considered the main political figure to have supported the construction of the planned city of Brasília.",
+            "It was designed by architect Alexandre Chan and structural engineer Mário Vila Verde."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Ponte_JK_ser%C3%A1_interditada_na_manh%C3%A3_de_domingo_%2819357314503%29.jpg/1920px-Ponte_JK_ser%C3%A1_interditada_na_manh%C3%A3_de_domingo_%2819357314503%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1063,
+            "attribution": "Agência Brasília — CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ponte_JK_ser%C3%A1_interditada_na_manh%C3%A3_de_domingo_(19357314503).jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Juscelino_Kubitschek_bridge"
+    },
+    {
+        "id": "helix-bridge",
+        "name": "Helix Bridge",
+        "location": "Marina Bay",
+        "country": "Singapore",
+        "coordinates": {
+            "lat": 1.28762222,
+            "lon": 103.86059722
+        },
+        "facts": [
+            "The Helix Bridge, officially The Helix, and previously known as the Double Helix Bridge, is a pedestrian bridge linking Marina Centre with Marina South in the Marina Bay area in Singapore.",
+            "It was officially opened on 24 April 2010; however, only half was opened due to ongoing construction at the Marina Bay Sands.",
+            "The bridge was fully opened on 18 July."
+        ],
+        "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/5/50/Double-Helix-Bridge.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+            "width": 1102,
+            "height": 1449,
+            "attribution": "William Cho — CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Double-Helix-Bridge.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Helix_Bridge"
+    },
+    {
+        "id": "banpo-bridge",
+        "name": "Banpo Bridge",
+        "location": "Seoul",
+        "country": "South Korea",
+        "coordinates": {
+            "lat": 37.5155,
+            "lon": 126.996
+        },
+        "facts": [
+            "The Banpo Bridge (Korean: 반포대교) is a major bridge for vehicular traffic over the Han River in central Seoul, South Korea.",
+            "It is a double-decked bridge, and is above the pedestrian Jamsu Bridge.",
+            "The bridge is a popular tourist attraction, and is known for its daily Moonlight Rainbow Fountain and light shows between April and October.",
+            "As of 2026, the bridge holds the Guinness World Record for longest fountain bridge in the world.",
+            "It is centrally located in Seoul, and accessible via public transportation."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/2011%EB%85%84_11%EC%9B%94_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C_%EB%AA%85%EC%86%8C_%28Seoul_best_attractions%29_%EB%8B%AC%EB%B9%9B%EB%AC%B4%EC%A7%80%EA%B0%9C%EB%B6%84%EC%88%981.jpg/1920px-2011%EB%85%84_11%EC%9B%94_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C_%EB%AA%85%EC%86%8C_%28Seoul_best_attractions%29_%EB%8B%AC%EB%B9%9B%EB%AC%B4%EC%A7%80%EA%B0%9C%EB%B6%84%EC%88%981.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1086,
+            "attribution": "서울특별시 소방재난본부(Seoul Metropolitan Fire &amp; Disaster Headquarters) — Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:2011%EB%85%84_11%EC%9B%94_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C_%EB%AA%85%EC%86%8C_(Seoul_best_attractions)_%EB%8B%AC%EB%B9%9B%EB%AC%B4%EC%A7%80%EA%B0%9C%EB%B6%84%EC%88%981.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Banpo_Bridge"
+    },
+    {
+        "id": "benjamin-franklin-bridge",
+        "name": "Benjamin Franklin Bridge",
+        "location": "Philadelphia, Pennsylvania",
+        "country": "United States",
+        "coordinates": {
+            "lat": 39.953,
+            "lon": -75.134
+        },
+        "facts": [
+            "The Benjamin Franklin Bridge, originally named the Delaware River Bridge and known locally as the Ben Franklin Bridge, is a suspension bridge across the Delaware River connecting Philadelphia, Pennsylvania and Camden, New Jersey.",
+            "Owned and operated by the Delaware River Port Authority, it is one of four primary vehicular bridges between Philadelphia and southern New Jersey, along with the Betsy Ross, Walt Whitman, and Tacony-Palmyra bridges.",
+            "It carries Interstate 676/U.S.",
+            "Route 30, pedestrians/cyclists, and the PATCO Speedline.",
+            "The bridge was dedicated as part of the 1926 Sesquicentennial Exposition, celebrating the 150th anniversary of the signing of the United States Declaration of Independence."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Benjamin_Franklin_Bridge_at_Sunset.jpg/1920px-Benjamin_Franklin_Bridge_at_Sunset.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 900,
+            "attribution": "Abhiram Juvvadi — CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Benjamin_Franklin_Bridge_at_Sunset.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Benjamin_Franklin_Bridge"
+    },
+    {
+        "id": "san-francisco-oakland-bay-bridge",
+        "name": "San Francisco–Oakland Bay Bridge",
+        "location": "San Francisco Bay, California",
+        "country": "United States",
+        "coordinates": {
+            "lat": 37.81805556,
+            "lon": -122.34666667
+        },
+        "facts": [
+            "The San Francisco–Oakland Bay Bridge, commonly referred to as the Bay Bridge, is a complex of bridges spanning San Francisco Bay in California.",
+            "As part of Interstate 80 and the direct road between San Francisco and Oakland, it carries about 260,000 vehicles a day on its two decks.",
+            "It includes one of the longest bridge spans in the United States.",
+            "The toll bridge was conceived as early as the California gold rush days, with \"Emperor\" Joshua Norton famously advocating for it around 1855–1860, but construction did not begin until 1933.",
+            "Designed by Charles H."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/Bay_Bridge_2022.jpg/1920px-Bay_Bridge_2022.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 900,
+            "attribution": "InvadingInvader — CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bay_Bridge_2022.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/San_Francisco%E2%80%93Oakland_Bay_Bridge"
+    },
+    {
+        "id": "bosphorus-bridge",
+        "name": "15 July Martyrs Bridge",
+        "location": "Istanbul",
+        "country": "Turkey",
+        "coordinates": {
+            "lat": 41.04527778,
+            "lon": 29.03444444
+        },
+        "facts": [
+            "The Bosphorus Bridge (Turkish: Boğaziçi Köprüsü), known officially as the 15 July Martyrs Bridge (Turkish: 15 Temmuz Şehitler Köprüsü) and colloquially as the First Bridge (Turkish: Birinci Köprü), is the oldest and southernmost of the three suspension bridges spanning the Bosphorus strait (Turkish: Boğaziçi) in Istanbul, Turkey, thus connecting Europe and Asia (alongside the Fatih Sultan Mehmet Bridge and Yavuz Sultan Selim Bridge).",
+            "The bridge extends between Ortaköy (in Europe) and Beylerbeyi (in Asia).",
+            "It is a gravity-anchored suspension bridge with steel towers and inclined hangers.",
+            "The aerodynamic deck hangs on steel cables.",
+            "It is 1,560 m (5,118 ft) long with a deck width of 33.40 m (110 ft)."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Bosphorus_Bridge_%281973%29_in_Istanbul.jpg/1920px-Bosphorus_Bridge_%281973%29_in_Istanbul.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1028,
+            "attribution": "Huseyinakbas63 — CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bosphorus_Bridge_(1973)_in_Istanbul.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Bosphorus_Bridge"
+    },
+    {
+        "id": "erasmusbrug",
+        "name": "Erasmusbrug",
+        "location": "Rotterdam",
+        "country": "Netherlands",
+        "coordinates": {
+            "lat": 51.90916667,
+            "lon": 4.48666667
+        },
+        "facts": [
+            "The Erasmusbrug (English: \"Erasmus Bridge\") is a combined cable-stayed and bascule bridge.",
+            "Construction began in 1986 and was completed in 1996.",
+            "It crosses the Nieuwe Maas in the centre of Rotterdam, connecting the north and south parts of the city.",
+            "The bridge was named in 1992 after Desiderius Erasmus, a prominent Christian Renaissance humanist also known as Erasmus of Rotterdam.",
+            "The Erasmus Bridge is Rotterdam's most important landmark and is even part of the city's official logo."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Erasmusbrug%2C_September_2019.jpg/1920px-Erasmusbrug%2C_September_2019.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 926,
+            "attribution": "Martin Falbisoner — CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Erasmusbrug,_September_2019.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Erasmusbrug"
+    },
+    {
+        "id": "pont-alexandre-iii",
+        "name": "Pont Alexandre III",
+        "location": "Paris",
+        "country": "France",
+        "coordinates": {
+            "lat": 48.86361111,
+            "lon": 2.31361111
+        },
+        "facts": [
+            "The Pont Alexandre III (French pronunciation: [pɔ̃ alɛksɑ̃dʁ tʁwa]) is a deck arch bridge that spans the Seine in Paris.",
+            "It connects the Champs-Élysées quarter with those of the Invalides and Eiffel Tower.",
+            "The bridge is widely regarded as the most ornate, extravagant bridge in the city.",
+            "It has been classified as a French monument historique since 1975."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/Pont_Alexandre_III_depuis_pont_de_la_Concorde_Paris.jpg/1920px-Pont_Alexandre_III_depuis_pont_de_la_Concorde_Paris.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 785,
+            "attribution": "Jebulon — CC0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pont_Alexandre_III_depuis_pont_de_la_Concorde_Paris.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Pont_Alexandre_III"
+    },
+    {
+        "id": "iron-bridge",
+        "name": "The Iron Bridge",
+        "location": "Ironbridge, Shropshire",
+        "country": "United Kingdom",
+        "coordinates": {
+            "lat": 52.62736,
+            "lon": -2.48544
+        },
+        "facts": [
+            "The Iron Bridge is a cast iron arch bridge that spans the Ironbridge Gorge of the River Severn in Shropshire, England.",
+            "Opened in 1781, it was the first major bridge in the world to be made of cast iron.",
+            "Its success inspired the widespread use of cast iron as a structural material, and today the bridge is celebrated as a symbol of the Industrial Revolution.",
+            "The geography of the deep Ironbridge Gorge, formed by glacial action during the last ice age, meant that there are industrially useful deposits of coal, iron ore, limestone, and fire clay present near the surface where they are readily mined, but also that it was difficult to build a bridge across the river at this location.",
+            "To cope with the instability of the banks and the need to maintain a navigable channel in the river, a single-span iron bridge was proposed by Thomas Farnolls Pritchard."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/Iron_Bridge_east_side_in_February_2019_%28cropped%29.jpg/1920px-Iron_Bridge_east_side_in_February_2019_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 813,
+            "attribution": "Tk420 — CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Iron_Bridge_east_side_in_February_2019_(cropped).jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/The_Iron_Bridge"
+    },
+    {
+        "id": "clifton-suspension-bridge",
+        "name": "Clifton Suspension Bridge",
+        "location": "Bristol",
+        "country": "United Kingdom",
+        "coordinates": {
+            "lat": 51.4549,
+            "lon": -2.6279
+        },
+        "facts": [
+            "The Clifton Suspension Bridge is a suspension bridge spanning the Avon Gorge and the River Avon, linking Clifton in Bristol to Leigh Woods in North Somerset.",
+            "Since opening in 1864, it has been a toll bridge, the income from which provides funds for its maintenance.",
+            "The bridge is built to a design by William Henry Barlow and John Hawkshaw, based on an earlier design by Isambard Kingdom Brunel.",
+            "It is a Grade I listed building and forms part of the B3129 road.",
+            "The idea of building a bridge across the Avon Gorge originated in 1753."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/Clifton_Suspension_Bridge-9350.jpg/1920px-Clifton_Suspension_Bridge-9350.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1067,
+            "attribution": "Gothick — CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Clifton_Suspension_Bridge-9350.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Clifton_Suspension_Bridge"
+    },
+    {
+        "id": "menai-suspension-bridge",
+        "name": "Menai Suspension Bridge",
+        "location": "Menai Strait, Wales",
+        "country": "United Kingdom",
+        "coordinates": {
+            "lat": 53.22,
+            "lon": -4.16305556
+        },
+        "facts": [
+            "The Menai Suspension Bridge (Welsh: Pont y Borth or Pont Grog y Borth) is a suspension bridge spanning the Menai Strait between the island of Anglesey and the mainland of Wales.",
+            "Designed by Thomas Telford and completed in 1826, it was one of the world's first major suspension bridges, and second such bridge designed to carry vehicular traffic, after the Union Chain Bridge (1820) across the River Tweed.",
+            "The bridge still carries road traffic and is a Grade I listed structure."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/The_Menai_Suspension_Bridge_%2835349065306%29.jpg/1920px-The_Menai_Suspension_Bridge_%2835349065306%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1200,
+            "attribution": "Reading Tom from Reading, UK — CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_Menai_Suspension_Bridge_(35349065306).jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Menai_Suspension_Bridge"
+    },
+    {
+        "id": "zhaozhou-bridge",
+        "name": "Zhaozhou Bridge",
+        "location": "Zhao County, Hebei",
+        "country": "China",
+        "coordinates": {
+            "lat": 37.7203,
+            "lon": 114.7633
+        },
+        "facts": [
+            "The Anji Bridge (simplified Chinese: 安济桥; traditional Chinese: 安濟橋; pinyin: Ānjì Qiáo; lit. 'Safe crossing bridge'), also known as the Great Stone Bridge or  Zhaozhou Bridge,  is the world's oldest open-spandrel segmental arch bridge of stone construction.",
+            "Credited to the design of a craftsman named Li Chun, the bridge was constructed in the years 595–605 during the Sui dynasty (581–618).",
+            "Located in the southern part of Hebei Province, it is the oldest standing bridge in China.",
+            "It is considered one of the Four Treasures of Hebei."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Zhaozhou_Bridge.jpg/1920px-Zhaozhou_Bridge.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1200,
+            "attribution": "English Wikipedia user Zhao 1974 — Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Zhaozhou_Bridge.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Anji_Bridge"
+    },
+    {
+        "id": "langkawi-sky-bridge",
+        "name": "Langkawi Sky Bridge",
+        "location": "Pulau Langkawi",
+        "country": "Malaysia",
+        "coordinates": null,
+        "facts": [
+            "Langkawi Sky Bridge is a 125-metre (410 ft) curved pedestrian cable-stayed bridge in Malaysia, completed in 2005.",
+            "The bridge deck is 660 metres (2,170 ft) above sea level at the peak of Gunung Mat Cincang on Pulau Langkawi, the main island of the Langkawi archipelago in Kedah.",
+            "The Langkawi Sky Bridge can be reached by first taking the Langkawi Cable Car to the Top Station, where an inclined lift called SkyGlide takes visitors from the Top Station down to the bridge.",
+            "The bridge was closed in July 2012 for maintenance and upgrading.",
+            "The reopening was put off several times, but it partially reopened in February 2015."
+        ],
+        "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Langkawi_sky_bridge.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+            "width": 1280,
+            "height": 851,
+            "attribution": "Flickr user \"The Dilly Lama\" — CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Langkawi_sky_bridge.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Langkawi_Sky_Bridge"
+    },
+    {
+        "id": "tower-bridge-of-capital-city",
+        "name": "Bloukrans Bridge",
+        "location": "Western Cape",
+        "country": "South Africa",
+        "coordinates": {
+            "lat": -33.96726944,
+            "lon": 23.64517222
+        },
+        "facts": [
+            "The Bloukrans Bridge is an arch bridge located near Nature's Valley, Western Cape, South Africa.",
+            "Designed by Liebenberg and Stander (Bergstan SA) and constructed by Concor between February 1980 and June 1983, the bridge is 216 m above the Bloukrans River.",
+            "The central span is 272 m and the bridge is 451 m in length.",
+            "Its primary use is carrying national route N2.",
+            "Bloukrans Bridge is the site of the world's highest commercial bridge bungee jumping, Bloukrans Bridge Bungy, operated by Face Adrenalin since 1997."
+        ],
+        "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Bloukrans_Bridge-001.jpg/1920px-Bloukrans_Bridge-001.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+            "width": 1600,
+            "height": 1200,
+            "attribution": "NJR ZA — Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bloukrans_Bridge-001.jpg"
+        },
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Bloukrans_Bridge"
+    }
+]
